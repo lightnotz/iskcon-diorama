@@ -26,7 +26,7 @@ function toggleAudio() {
 }
 
 // Chatbot
-const API_KEY = GEMINI_API_KEY;
+const API_KEY = 'AIzaSyCJhtD4iNOC5CWAMYQYjusDdBiddb9O7Wg';
 
 function toggleChat() {
   const chatWindow = document.getElementById('chat-window');
