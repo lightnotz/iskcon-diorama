@@ -408,7 +408,12 @@ body {
   .pastime-content {
     padding: 40px 20px;
   }
-
+/* Desktop fix */
+@media (min-width: 768px) {
+  .hero {
+    background-position: center 35%;
+  }
+}
   /* Fix chatbot on mobile */
   .chat-window {
     width: 100%;
