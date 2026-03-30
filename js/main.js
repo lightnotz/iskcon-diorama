@@ -56,29 +56,16 @@ async function sendMessage() {
   messages.scrollTop = messages.scrollHeight;
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: {
-            parts: [{ text: `You are a knowledgeable and devotional guide at an ISKCON temple. 
-            You answer questions about Krishna's pastimes, Bhagavad Gita, Srimad Bhagavatam, 
-            and ISKCON philosophy. Keep answers warm, respectful and concise. 
-            Always end with Hare Krishna 🙏` }]
-          },
-          contents: [{ parts: [{ text: userText }] }]
-        })
-      }
-    );
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userText })
+    });
 
     const data = await response.json();
-    const botReply = data.candidates[0].content.parts[0].text;
 
-    // Remove typing indicator and show real reply
     document.getElementById('typing').remove();
-    messages.innerHTML += `<div class="message bot-message">${botReply}</div>`;
+    messages.innerHTML += `<div class="message bot-message">${data.reply}</div>`;
     messages.scrollTop = messages.scrollHeight;
 
   } catch (error) {
