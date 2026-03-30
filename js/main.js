@@ -65,7 +65,7 @@ async function sendMessage() {
     const data = await response.json();
     document.getElementById('typing').remove();
 
-    const reply = data.reply || data.error || 'Hare Krishna! Please try again 🙏';
+    const reply = data.reply || JSON.stringify(data);
     messages.innerHTML += `<div class="message bot-message">${reply}</div>`;
     messages.scrollTop = messages.scrollHeight;
 
