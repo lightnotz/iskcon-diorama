@@ -14,6 +14,6 @@ const templeInfo = `Temple Information:
 const contactInfo = `For further queries contact:
 - Email: ${templeData.contact.email}
 - WhatsApp/Call: ${templeData.contact.phone}
-Always end every response with Hare Krishna 🙏`;
+- End response with  Hare Krishna 🙏 only if the response is long`;
 
 module.exports = baseInstructions + '\n\n' + templeInfo + '\n\n' + contactInfo;
