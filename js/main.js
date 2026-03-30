@@ -3,7 +3,12 @@ let utterance = null;
 
 function toggleAudio() {
   const btn = document.querySelector('.audio-btn');
-  const storyText = document.getElementById('story-text').innerText;
+  const storyEl = document.getElementById('story-text');
+  
+  if (!btn || !storyEl) return;
+  
+  const storyText = storyEl.innerText;
+
   if (isSpeaking) {
     window.speechSynthesis.cancel();
     isSpeaking = false;
@@ -25,6 +30,7 @@ function toggleAudio() {
 
 function toggleChat() {
   const chatWindow = document.getElementById('chat-window');
+  if (!chatWindow) return;
   chatWindow.classList.toggle('open');
 }
 
@@ -37,8 +43,9 @@ function handleKey(event) {
 async function sendMessage() {
   const input = document.getElementById('chat-input');
   const messages = document.getElementById('chat-messages');
+  if (!input || !messages) return;
+  
   const userText = input.value.trim();
-
   if (!userText) return;
 
   messages.innerHTML += `<div class="message user-message">${userText}</div>`;
@@ -67,4 +74,6 @@ async function sendMessage() {
 
   } catch (error) {
     document.getElementById('typing').remove();
-    messages.innerHTML
+    messages.innerHTML += `<div class="message bot-message">Error: ${error.message} 🙏</div>`;
+  }
+}
