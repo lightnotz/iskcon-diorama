@@ -29,6 +29,16 @@ body {
   font-size: 1.5rem;
   color: #c9a227;
   font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .nav-links {
@@ -408,12 +418,6 @@ body {
   .pastime-content {
     padding: 40px 20px;
   }
-/* Desktop fix */
-@media (min-width: 768px) {
-  .hero {
-    background-position: center 70%;
-  }
-}
   /* Fix chatbot on mobile */
   .chat-window {
     width: 100%;
