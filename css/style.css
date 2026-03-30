@@ -50,7 +50,7 @@ body {
 }
 /* Hero Section */
 .hero {
-  min-height: 90vh;
+  min-height: 115vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -411,7 +411,7 @@ body {
 /* Desktop fix */
 @media (min-width: 768px) {
   .hero {
-    background-position: center 35%;
+    background-position: center 40%;
   }
 }
   /* Fix chatbot on mobile */
