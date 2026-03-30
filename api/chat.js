@@ -25,8 +25,8 @@ module.exports = async function handler(req, res) {
     });
 
     const data = await response.json();
-    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Hare Krishna! Please try again 🙏';
-    res.status(200).json({ reply });
+// Send full raw response so we can see what's happening
+res.status(200).json({ reply: JSON.stringify(data) });
 
   } catch (error) {
     console.error('Error:', error);
