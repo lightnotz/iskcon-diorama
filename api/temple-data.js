@@ -1,5 +1,6 @@
 const templeData = {
   name: 'ISKCON Abids, Hyderabad',
+  residing dieties: 'Sri Sri Radha Madan Mohana, Sri Sri Nitai Gauranga, Sri Sri Jagannath Baladev Subhadra',
   address: 'Nampally Station Road, opposite Pulla Reddy Sweets, in the Hare Krishna Land area (Old Kattal Mandi), Abids, Telangana 500001',
   timings: {
     mangalaAarti: '4:30 AM',
