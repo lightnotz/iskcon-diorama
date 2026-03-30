@@ -11,7 +11,9 @@ module.exports = async function handler(req, res) {
 
   try {
     const apiKey = process.env.GEMINI_API_KEY;
-    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=' + apiKey;
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=' + apiKey;
+
+    const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -23,8 +25,8 @@ module.exports = async function handler(req, res) {
     });
 
     const data = await response.json();
-// Send full raw response so we can see what's happening
-res.status(200).json({ reply: JSON.stringify(data) });
+    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Hare Krishna! Please try again 🙏';
+    res.status(200).json({ reply });
 
   } catch (error) {
     console.error('Error:', error);

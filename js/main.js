@@ -4,7 +4,6 @@ let utterance = null;
 function toggleAudio() {
   const btn = document.querySelector('.audio-btn');
   const storyText = document.getElementById('story-text').innerText;
-
   if (isSpeaking) {
     window.speechSynthesis.cancel();
     isSpeaking = false;
@@ -17,7 +16,6 @@ function toggleAudio() {
     window.speechSynthesis.speak(utterance);
     isSpeaking = true;
     btn.innerHTML = '⏹ Stop Narration';
-
     utterance.onend = function () {
       isSpeaking = false;
       btn.innerHTML = '🔊 Listen to this Story';
@@ -25,7 +23,6 @@ function toggleAudio() {
   }
 }
 
-// Chatbot
 function toggleChat() {
   const chatWindow = document.getElementById('chat-window');
   chatWindow.classList.toggle('open');
@@ -64,14 +61,10 @@ async function sendMessage() {
 
     const data = await response.json();
     document.getElementById('typing').remove();
-
-   const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Hare Krishna! Please try again 🙏';
-res.status(200).json({ reply });
+    const reply = data.reply || 'Hare Krishna! Please try again 🙏';
     messages.innerHTML += `<div class="message bot-message">${reply}</div>`;
     messages.scrollTop = messages.scrollHeight;
 
   } catch (error) {
     document.getElementById('typing').remove();
-    messages.innerHTML += `<div class="message bot-message">Error: ${error.message} 🙏</div>`;
-  }
-}
+    messages.innerHTML
