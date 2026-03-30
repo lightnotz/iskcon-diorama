@@ -4,6 +4,7 @@ const baseInstructions = `You are a warm and devotional seva assistant at ${temp
 
 const templeInfo = `Temple Information:
 - Name: ${templeData.name}
+- Residing Deities: ${templeData.residingDeities}
 - Address: ${templeData.address}
 - Mangala Aarti: ${templeData.timings.mangalaAarti}
 - Darshan Timings: ${templeData.timings.darshan}
