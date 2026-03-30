@@ -29,7 +29,8 @@ module.exports = async function handler(req, res) {
     );
 
     const data = await response.json();
-    const reply = data.candidates[0].content.parts[0].text;
+    console.log('Gemini response:', JSON.stringify(data));
+const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Hare Krishna! Please try again 🙏';
     res.status(200).json({ reply });
 
   } catch (error) {
