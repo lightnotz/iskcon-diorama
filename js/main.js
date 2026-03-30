@@ -26,7 +26,7 @@ function toggleAudio() {
 }
 
 // Chatbot
-const API_KEY = 'AIzaSyCJhtD4iNOC5CWAMYQYjusDdBiddb9O7Wg';
+
 
 function toggleChat() {
   const chatWindow = document.getElementById('chat-window');
@@ -62,10 +62,10 @@ async function sendMessage() {
       body: JSON.stringify({ message: userText })
     });
 
-    const data = await response.json();
-
-    document.getElementById('typing').remove();
-    messages.innerHTML += `<div class="message bot-message">${data.reply}</div>`;
+   const data = await response.json();
+console.log('Response from server:', data);
+document.getElementById('typing').remove();
+messages.innerHTML += `<div class="message bot-message">${data.reply}</div>`;
     messages.scrollTop = messages.scrollHeight;
 
   } catch (error) {
