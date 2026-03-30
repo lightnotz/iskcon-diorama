@@ -24,3 +24,65 @@ function toggleAudio() {
     };
   }
 }
+
+// Chatbot
+const API_KEY = 'AIzaSyCTbNhFVqRhZs89fGt1alC92FVSmWF70hQ';
+
+function toggleChat() {
+  const chatWindow = document.getElementById('chat-window');
+  chatWindow.classList.toggle('open');
+}
+
+function handleKey(event) {
+  if (event.key === 'Enter') {
+    sendMessage();
+  }
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const messages = document.getElementById('chat-messages');
+  const userText = input.value.trim();
+
+  if (!userText) return;
+
+  // Show user message
+  messages.innerHTML += `<div class="message user-message">${userText}</div>`;
+  input.value = '';
+  messages.scrollTop = messages.scrollHeight;
+
+  // Show typing indicator
+  messages.innerHTML += `<div class="message bot-message" id="typing">thinking... 🙏</div>`;
+  messages.scrollTop = messages.scrollHeight;
+
+  try {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: {
+            parts: [{ text: `You are a knowledgeable and devotional guide at an ISKCON temple. 
+            You answer questions about Krishna's pastimes, Bhagavad Gita, Srimad Bhagavatam, 
+            and ISKCON philosophy. Keep answers warm, respectful and concise. 
+            Always end with Hare Krishna 🙏` }]
+          },
+          contents: [{ parts: [{ text: userText }] }]
+        })
+      }
+    );
+
+    const data = await response.json();
+    const botReply = data.candidates[0].content.parts[0].text;
+
+    // Remove typing indicator and show real reply
+    document.getElementById('typing').remove();
+    messages.innerHTML += `<div class="message bot-message">${botReply}</div>`;
+    messages.scrollTop = messages.scrollHeight;
+
+  } catch (error) {
+    document.getElementById('typing').remove();
+    messages.innerHTML += `<div class="message bot-message">Sorry, I couldn't connect. Please try again 🙏</div>`;
+  }
+}
