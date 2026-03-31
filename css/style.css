@@ -344,7 +344,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 180px;
+  height: 120px;
   background: linear-gradient(transparent, #080808);
   z-index: 3;
   pointer-events: none;
