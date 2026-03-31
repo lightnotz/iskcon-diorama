@@ -11,7 +11,6 @@ async function toggleAudio() {
   const storyEl = document.getElementById('story-text');
   if (!btn || !storyEl) return;
 
-  // ── Stop if already speaking ──
   if (isSpeaking) {
     stopNarration();
     return;
@@ -28,7 +27,6 @@ async function toggleAudio() {
       body: JSON.stringify({ text: storyText }),
     });
 
-    // Check if server said to fallback (no API key set)
     const contentType = response.headers.get('Content-Type') || '';
 
     if (contentType.includes('application/json')) {
@@ -39,7 +37,6 @@ async function toggleAudio() {
       }
     }
 
-    // ── ElevenLabs audio blob ──
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
     currentAudio = new Audio(url);
@@ -82,9 +79,7 @@ function stopNarration() {
   }
 }
 
-// ── Browser TTS fallback (used when no ElevenLabs key, or on error) ──
 function useBrowserTTS(text, btn) {
-  // Pick the best available voice for en-IN
   const voices = window.speechSynthesis.getVoices();
   const preferred = voices.find(v =>
     v.lang === 'en-IN' || v.lang === 'en-GB' || v.name.includes('Google')
@@ -111,8 +106,38 @@ function useBrowserTTS(text, btn) {
 
 // ─── CHATBOT ──────────────────────────────────────────────────────────────────
 
-// Conversation history — persists for the session, gives the bot memory
+// Conversation history — persists for the whole session
 const conversationHistory = [];
+
+// Human-readable names for each pastime, used in the greeting
+const PASTIME_NAMES = {
+  kaliya:     'Kaliya Daman',
+  govardhan:  'Govardhan Puja',
+  butter:     'Butter Thief',
+  putana:     'Putana Moksha',
+};
+
+// Detect which page we're on
+const currentPastimeId = (typeof PASTIME_ID !== 'undefined') ? PASTIME_ID : null;
+
+// ── Set the correct greeting when the page loads ──
+function setInitialGreeting() {
+  const messagesEl = document.getElementById('chat-messages');
+  if (!messagesEl) return;
+
+  let greeting;
+
+  if (currentPastimeId && PASTIME_NAMES[currentPastimeId]) {
+    const name = PASTIME_NAMES[currentPastimeId];
+    greeting = `Hare Krishna! 🙏 You are exploring <strong>${name}</strong>.<br><br>
+I can tell you the full story, its spiritual significance, what the scriptures say about it, or answer any questions you have about this pastime. How may I serve you?`;
+  } else {
+    greeting = `Hare Krishna! 🙏 Welcome to ISKCON Abids.<br><br>
+I can help you with temple timings, upcoming events, Krishna's divine pastimes, or anything about our dioramas. How may I serve you today?`;
+  }
+
+  messagesEl.innerHTML = `<div class="message bot-message">${greeting}</div>`;
+}
 
 function toggleChat() {
   const chatWindow = document.getElementById('chat-window');
@@ -132,15 +157,15 @@ async function sendMessage() {
   const userText = input.value.trim();
   if (!userText) return;
 
-  // Add user message to UI
+  // Show user message
   messages.innerHTML += `<div class="message user-message">${userText}</div>`;
   input.value = '';
   messages.scrollTop = messages.scrollHeight;
 
-  // Push to history before sending
+  // Push to history
   conversationHistory.push({ role: 'user', content: userText });
 
-  // Typing indicator
+  // Typing indicator with unique id so we can remove it safely
   const typingId = 'typing-' + Date.now();
   messages.innerHTML += `<div class="message bot-message" id="${typingId}">thinking... 🙏</div>`;
   messages.scrollTop = messages.scrollHeight;
@@ -149,8 +174,10 @@ async function sendMessage() {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      // Send full history so the server can pass it to the LLM
-      body: JSON.stringify({ history: conversationHistory }),
+      body: JSON.stringify({
+        history: conversationHistory,
+        context: currentPastimeId,   // tells the server which page we're on
+      }),
     });
 
     if (!response.ok) throw new Error('Server error: ' + response.status);
@@ -160,7 +187,7 @@ async function sendMessage() {
 
     const reply = data.reply || 'Hare Krishna! Please try again 🙏';
 
-    // Store assistant reply in history so next turn has full context
+    // Save assistant reply so next turn has full context
     conversationHistory.push({ role: 'assistant', content: reply });
 
     messages.innerHTML += `<div class="message bot-message">${reply}</div>`;
@@ -168,8 +195,8 @@ async function sendMessage() {
 
   } catch (error) {
     document.getElementById(typingId)?.remove();
-    messages.innerHTML += `<div class="message bot-message">Sorry, something went wrong 🙏</div>`;
-    // Remove the failed user message from history so it doesn't corrupt future turns
+    messages.innerHTML += `<div class="message bot-message">Sorry, something went wrong. Please try again 🙏</div>`;
+    // Pop the failed user message so history stays clean
     conversationHistory.pop();
   }
 }
@@ -186,3 +213,8 @@ document.querySelectorAll('.diorama-card, .section-title, .section-subtitle').fo
   el.classList.add('fade-in');
   observer.observe(el);
 });
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+// Set the greeting once DOM is ready
+document.addEventListener('DOMContentLoaded', setInitialGreeting);
