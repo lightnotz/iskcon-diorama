@@ -2,93 +2,89 @@
 <html lang="en">
 
 <head>
-    <meta charset="" UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ISKCON ABIDS Diorams</title>
-    <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISKCON ABIDS Dioramas</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
-    <nav class="navbar">
-        <div class="logo">
-  <img src="images/logo.jpg" class="logo-img">
-  <span>ISKCON <br> ABIDS</span>
-</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
-    </nav>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="images/logo.jpg" class="logo-img">
+      <span>ISKCON <br> ABIDS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
 
-    <section class="hero">
-  <div class="hero-content">
-    <h1>Krishna's Divine Pastimes</h1>
-    <p>Walk through the sacred stories of the Lord, brought to life through art and devotion</p>
-    <a href="#dioramas" class="btn">Explore Dioramas</a>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Krishna's Divine Pastimes</h1>
+      <p>Walk through the sacred stories of the Lord, brought to life through art and devotion</p>
+      <a href="#dioramas" class="btn">Explore Dioramas</a>
+    </div>
+  </section>
+
+  <section class="dioramas-section" id="dioramas">
+    <h2 class="section-title">Sacred Pastimes</h2>
+    <p class="section-subtitle">Select a diorama to explore the divine story</p>
+
+    <div class="dioramas-grid">
+
+      <a href="pastime.html" class="diorama-card">
+        <div class="card-number">01</div>
+        <h3>Kaliya Daman</h3>
+        <p>Krishna subdues the serpent Kaliya in the Yamuna river</p>
+        <span class="explore-link">Explore →</span>
+      </a>
+
+      <a href="pastime.html" class="diorama-card">
+        <div class="card-number">02</div>
+        <h3>Govardhan Puja</h3>
+        <p>Krishna lifts Govardhan hill to protect the villagers</p>
+        <span class="explore-link">Explore →</span>
+      </a>
+
+      <a href="pastime.html" class="diorama-card">
+        <div class="card-number">03</div>
+        <h3>Butter Thief</h3>
+        <p>Young Krishna steals butter from the Gopis of Vrindavan</p>
+        <span class="explore-link">Explore →</span>
+      </a>
+
+      <a href="pastime.html" class="diorama-card">
+        <div class="card-number">04</div>
+        <h3>Putana Moksha</h3>
+        <p>Krishna liberates the demoness Putana through his divine touch</p>
+        <span class="explore-link">Explore →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Chatbot Button -->
+  <button class="chat-toggle" onclick="toggleChat()">Ask Krishna</button>
+
+  <!-- Chatbot Window -->
+  <div class="chat-window" id="chat-window">
+    <div class="chat-header">
+      <span>🛕 Krishna's Guide</span>
+      <button onclick="toggleChat()" class="chat-close">✕</button>
+    </div>
+    <!-- Greeting injected by setInitialGreeting() in main.js — do not hardcode here -->
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
+      <button onclick="sendMessage()" class="send-btn">→</button>
+    </div>
   </div>
-</section>
 
-<section class="dioramas-section" id="dioramas">
-  <h2 class="section-title">Sacred Pastimes</h2>
-  <p class="section-subtitle">Select a diorama to explore the divine story</p>
-
-  <div class="dioramas-grid">
-
-    <a href="pastime.html" class="diorama-card">
-      <div class="card-number">01</div>
-      <h3>Kaliya Daman</h3>
-      <p>Krishna subdues the serpent Kaliya in the Yamuna river</p>
-      <span class="explore-link">Explore →</span>
-    </a>
-
-    <a href="pastime.html" class="diorama-card">
-      <div class="card-number">02</div>
-      <h3>Govardhan Puja</h3>
-      <p>Krishna lifts Govardhan hill to protect the villagers</p>
-      <span class="explore-link">Explore →</span>
-    </a>
-
-    <a href="pastime.html" class="diorama-card">
-      <div class="card-number">03</div>
-      <h3>Butter Thief</h3>
-      <p>Young Krishna steals butter from the Gopis of Vrindavan</p>
-      <span class="explore-link">Explore →</span>
-    </a>
-
-    <a href="pastime.html" class="diorama-card">
-      <div class="card-number">04</div>
-      <h3>Putana Moksha</h3>
-      <p>Krishna liberates the demoness Putana through his divine touch</p>
-      <span class="explore-link">Explore →</span>
-    </a>
-
-  </div>
-</section>
-
-<!-- Chatbot Button -->
-<button class="chat-toggle" onclick="toggleChat()">
-   Ask Krishna
-</button>
-
-<!-- Chatbot Window -->
-<div class="chat-window" id="chat-window">
-  <div class="chat-header">
-    <span>🛕 Krishna's Guide</span>
-    <button onclick="toggleChat()" class="chat-close">✕</button>
-  </div>
-  <div class="chat-messages" id="chat-messages">
-  </div>
-  <div class="chat-input-area">
-    <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
-    <button onclick="sendMessage()" class="send-btn">→</button>
-  </div>
-</div>
-
-<script src="js/main.js"></script>
-</body>
+  <script src="js/main.js"></script>
 
 </body>
 
 </html>
-

@@ -61,16 +61,26 @@
         <span>🛕 Krishna's Guide</span>
         <button onclick="toggleChat()" class="chat-close">✕</button>
       </div>
-
+      <!-- Greeting is injected by setInitialGreeting() in main.js — do not hardcode here -->
+      <div class="chat-messages" id="chat-messages"></div>
       <div class="chat-input-area">
         <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
         <button onclick="sendMessage()" class="send-btn">→</button>
       </div>
     </div>
 
+    <!--
+      IMPORTANT: PASTIME_ID must be declared BEFORE main.js loads,
+      so main.js can read it at the top level when it first executes.
+    -->
     <script>
       const PASTIME_ID = 'kaliya';
+    </script>
 
+    <script src="js/main.js"></script>
+
+    <script>
+      // Parallax — runs after main.js so all functions are available
       const heroBg = document.getElementById('hero-bg');
       const heroEl = document.getElementById('pastime-hero');
 
@@ -87,7 +97,6 @@
       window.addEventListener('scroll', onScroll, { passive: true });
     </script>
 
-    <script src="js/main.js"></script>
     <script src="js/pastime-data.js"></script>
     <script src="js/translate.js"></script>
 
