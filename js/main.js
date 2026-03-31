@@ -77,3 +77,17 @@ async function sendMessage() {
     messages.innerHTML += `<div class="message bot-message">Error: ${error.message} 🙏</div>`;
   }
 }
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.diorama-card, .section-title, .section-subtitle').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
