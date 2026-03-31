@@ -255,52 +255,105 @@ body {
 }
 
 /* Pastime Page */
+/* ════════════════════════════════════════
+   PASTIME PARALLAX HERO
+   Replace the old .pastime-hero block in style.css with this entire section
+   ════════════════════════════════════════ */
+
 .pastime-hero {
-  text-align: center;
-  padding: 80px 40px 60px;
-  background: linear-gradient(180deg, #120800 0%, #080808 100%);
-  border-bottom: 1px solid rgba(201,162,39,0.15);
   position: relative;
+  height: 55vh;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;        /* clips the parallax image as it moves */
 }
 
-.pastime-hero::after {
-  content: '';
+/* The actual background image — moves and blurs via JS */
+.pastime-hero-bg {
   position: absolute;
-  bottom: -1px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #c9a227, transparent);
+  inset: -15%;            /* oversized so parallax movement never shows edges */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform, filter;
+  transition: filter 0.05s linear;
+  z-index: 0;
 }
 
+/* Dark gradient — bottom heavy so text pops, top light so navbar reads */
+.pastime-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(8,4,0,0.35) 0%,
+      rgba(8,4,0,0.15) 30%,
+      rgba(8,4,0,0.55) 70%,
+      rgba(8,4,0,0.92) 100%
+    );
+  z-index: 1;
+}
+
+/* Text content — sits above both bg and overlay */
+.pastime-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 24px;
+  max-width: 720px;
+}
+
+/* Pastime number stays faint */
 .pastime-number {
   font-family: 'Cinzel', serif;
-  font-size: 4rem;
-  background: linear-gradient(135deg, rgba(201,162,39,0.2), rgba(201,162,39,0.05));
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  background: linear-gradient(135deg, rgba(201,162,39,0.18), rgba(201,162,39,0.05));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  line-height: 1;
 }
 
 .pastime-title {
   font-family: 'Cinzel', serif;
-  font-size: 3rem;
-  background: linear-gradient(180deg, #ffffff 0%, #f5d76e 40%, #c9a227 100%);
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1.15;
+  background: linear-gradient(180deg, #ffffff 0%, #f5d76e 45%, #c9a227 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 2px 24px rgba(201,162,39,0.3));
   margin-bottom: 16px;
 }
 
 .pastime-subtitle {
-  color: rgba(168, 144, 112, 0.8);
-  font-size: 1.1rem;
-  margin-bottom: 40px;
+  color: rgba(245, 230, 200, 0.78);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+  margin-bottom: 36px;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
 }
 
+/* Fade into page content below */
+.pastime-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(transparent, #080808);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Audio button sits above the fade */
 .audio-btn {
+  position: relative;
+  z-index: 4;
   background: transparent;
   border: 1px solid rgba(201,162,39,0.5);
   color: #c9a227;
@@ -311,6 +364,8 @@ body {
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .audio-btn:hover {
@@ -320,24 +375,47 @@ body {
   box-shadow: 0 4px 20px rgba(201,162,39,0.4);
 }
 
+/* Story section below the hero */
 .pastime-content {
   max-width: 860px;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 60px 40px 100px;
 }
 
-.image-placeholder {
-  background: linear-gradient(145deg, rgba(26,10,0,0.8), rgba(12,5,0,0.9));
-  border: 1px dashed rgba(201,162,39,0.3);
-  border-radius: 16px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(168, 144, 112, 0.6);
-  font-size: 1rem;
-  margin-bottom: 60px;
+.pastime-story h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, #f5d76e, #c9a227);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 30px;
 }
+
+.pastime-story p {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: rgba(212, 197, 169, 0.9);
+  margin-bottom: 24px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .pastime-hero {
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .pastime-content {
+    padding: 40px 20px 80px;
+  }
+
+  .audio-btn {
+    padding: 12px 28px;
+    font-size: 0.85rem;
+  }
+}
+
 
 .pastime-story h2 {
   font-family: 'Cinzel', serif;
@@ -593,5 +671,87 @@ body {
 
   .pastime-hero {
     padding: 60px 20px 40px;
+  }
+}
+
+/* ── Add this to the bottom of css/style.css ── */
+
+/* Language Bar */
+.lang-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 40px;
+  background: rgba(8, 4, 0, 0.85);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.12);
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+  position: sticky;
+  top: 73px; /* sits just below navbar */
+  z-index: 90;
+}
+
+.lang-label {
+  font-size: 0.78rem;
+  color: rgba(168, 144, 112, 0.7);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.lang-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lang-pill {
+  background: transparent;
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  color: rgba(245, 230, 200, 0.6);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.lang-pill:hover {
+  border-color: rgba(201, 162, 39, 0.5);
+  color: #c9a227;
+}
+
+.lang-pill.active {
+  background: linear-gradient(135deg, #c9a227, #e8c84a);
+  border-color: transparent;
+  color: #080808;
+  font-weight: 700;
+}
+
+.lang-status {
+  font-size: 0.78rem;
+  color: rgba(201, 162, 39, 0.7);
+  font-style: italic;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .lang-bar {
+    padding: 10px 16px;
+    top: 61px;
+    gap: 8px;
+  }
+
+  .lang-status {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .lang-pill {
+    padding: 5px 12px;
+    font-size: 0.78rem;
   }
 }

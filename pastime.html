@@ -9,85 +9,89 @@
   <body>
 
     <nav class="navbar">
-      <div class="logo">🛕 ISKCON Dioramas</div>
+      <div class="logo">
+        <img src="images/logo.jpg" class="logo-img">
+        <span>ISKCON <br> ABIDS</span>
+      </div>
       <ul class="nav-links">
         <li><a href="index.html">← Back to Home</a></li>
       </ul>
     </nav>
 
-    <div class="pastime-hero">
-      <div class="pastime-number">01</div>
-      <h1 class="pastime-title">Kaliya Daman</h1>
-      <p class="pastime-subtitle">Krishna subdues the serpent Kaliya</p>
-
-      <!-- Audio Button -->
-      <button class="audio-btn" onclick="toggleAudio()">
-        🔊 Listen to this Story
-      </button>
+    <!-- Language Bar -->
+    <div class="lang-bar">
+      <span class="lang-label">🌐 Language:</span>
+      <div class="lang-pills">
+        <button class="lang-pill active" data-lang="en" onclick="setLanguage('en', this)">English</button>
+        <button class="lang-pill" data-lang="hi" onclick="setLanguage('hi', this)">हिन्दी</button>
+        <button class="lang-pill" data-lang="te" onclick="setLanguage('te', this)">తెలుగు</button>
+        <button class="lang-pill" data-lang="ta" onclick="setLanguage('ta', this)">தமிழ்</button>
+        <button class="lang-pill" data-lang="bn" onclick="setLanguage('bn', this)">বাংলা</button>
+      </div>
+      <span class="lang-status" id="lang-status"></span>
     </div>
 
+    <!-- Parallax Hero -->
+    <div class="pastime-hero" id="pastime-hero">
+      <div class="pastime-hero-bg" id="hero-bg" style="background-image: url('images/kaliya.jpg');"></div>
+      <div class="pastime-hero-overlay"></div>
+      <div class="pastime-hero-content">
+        <div class="pastime-number" data-translate="number">01</div>
+        <h1 class="pastime-title" data-translate="title">Kaliya Daman</h1>
+        <p class="pastime-subtitle" data-translate="subtitle">Krishna subdues the serpent Kaliya</p>
+        <button class="audio-btn" onclick="toggleAudio()">🔊 Listen to this Story</button>
+      </div>
+    </div>
+
+    <!-- Story -->
     <div class="pastime-content">
-
-      <!-- Image -->
-      <div class="pastime-image-box">
-        <div class="image-placeholder">
-          📸 Diorama Photo Coming Soon
-        </div>
-      </div>
-
-      <!-- Story -->
       <div class="pastime-story" id="story-text">
-        <h2>The Story</h2>
-        <p>
-          Long ago, in the sacred waters of the Yamuna river near Vrindavan, 
-          there lived a fearsome multi-headed serpent named Kaliya. His 
-          poisonous venom had made the waters deadly, killing anyone who 
-          drank from the river or even came near it.
-        </p>
-        <p>
-          One day, young Krishna and his cowherd friends were playing on the 
-          banks of the Yamuna. Their ball fell into the river, and Krishna 
-          fearlessly jumped in to retrieve it. Kaliya rose up in fury, 
-          wrapping his massive coils around Krishna.
-        </p>
-        <p>
-          But Krishna expanded his body and broke free from the serpent's 
-          grip. He then leaped onto Kaliya's many heads and began to dance — 
-          a divine dance that subdued the serpent completely. Kaliya's wives 
-          begged Krishna for mercy, and the compassionate Lord spared Kaliya's 
-          life, ordering him to leave the Yamuna and never return.
-        </p>
-        <p>
-          From that day, the Yamuna's waters became pure and sacred once more, 
-          and the people of Vrindavan were free from fear.
-        </p>
+        <h2 data-translate="story-heading">The Story</h2>
+        <p data-translate="p1">Long ago, in the sacred waters of the Yamuna river near Vrindavan, there lived a fearsome multi-headed serpent named Kaliya. His poisonous venom had made the waters deadly, killing anyone who drank from the river or even came near it.</p>
+        <p data-translate="p2">One day, young Krishna and his cowherd friends were playing on the banks of the Yamuna. Their ball fell into the river, and Krishna fearlessly jumped in to retrieve it. Kaliya rose up in fury, wrapping his massive coils around Krishna.</p>
+        <p data-translate="p3">But Krishna expanded his body and broke free from the serpent's grip. He then leaped onto Kaliya's many heads and began to dance — a divine dance that subdued the serpent completely. Kaliya's wives begged Krishna for mercy, and the compassionate Lord spared Kaliya's life, ordering him to leave the Yamuna and never return.</p>
+        <p data-translate="p4">From that day, the Yamuna's waters became pure and sacred once more, and the people of Vrindavan were free from fear.</p>
       </div>
-
     </div>
-<script src="js/main.js"></script>
-<!-- Chatbot Button -->
-<button class="chat-toggle" onclick="toggleChat()">
-  🙏 Ask Krishna
-</button>
 
-<!-- Chatbot Window -->
-<div class="chat-window" id="chat-window">
-  <div class="chat-header">
-    <span>🛕 Krishna's Guide</span>
-    <button onclick="toggleChat()" class="chat-close">✕</button>
-  </div>
-  <div class="chat-messages" id="chat-messages">
-    <div class="message bot-message">
-      Hare Krishna! 🙏 I am here to guide you through the divine pastimes. What would you like to know?
+    <!-- Chatbot -->
+    <button class="chat-toggle" onclick="toggleChat()">🙏 Ask Krishna</button>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-header">
+        <span>🛕 Krishna's Guide</span>
+        <button onclick="toggleChat()" class="chat-close">✕</button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot-message">Hare Krishna! 🙏 I am here to guide you through the divine pastimes. What would you like to know?</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
+        <button onclick="sendMessage()" class="send-btn">→</button>
+      </div>
     </div>
-  </div>
-  <div class="chat-input-area">
-    <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
-    <button onclick="sendMessage()" class="send-btn">→</button>
-  </div>
-</div>
 
-<script src="js/main.js"></script>
-</body>
-  
+    <script>
+      const PASTIME_ID = 'kaliya';
+
+      const heroBg = document.getElementById('hero-bg');
+      const heroEl = document.getElementById('pastime-hero');
+
+      function onScroll() {
+        const scrollY = window.scrollY;
+        const heroH = heroEl.offsetHeight;
+        const parallax = scrollY * 0.4;
+        const blurAmount = Math.min((scrollY / heroH) * 12, 12);
+        const scale = 1 + scrollY * 0.00015;
+        heroBg.style.transform = `translateY(${parallax}px) scale(${scale})`;
+        heroBg.style.filter = `blur(${blurAmount}px)`;
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    </script>
+
+    <script src="js/main.js"></script>
+    <script src="js/pastime-data.js"></script>
+    <script src="js/translate.js"></script>
+
+  </body>
 </html>
