@@ -5,10 +5,25 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { message } = req.body;
+  // Accept either the new `history` array or old `message` string for compatibility
+  const { history, message } = req.body;
 
-  if (!message) {
+  // Build messages: prefer history array; fall back to single message
+  let userMessages;
+  if (Array.isArray(history) && history.length > 0) {
+    // Validate: only allow role/content keys, cap at 20 turns to control cost
+    userMessages = history
+      .filter(m => m && typeof m.role === 'string' && typeof m.content === 'string')
+      .slice(-20)
+      .map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: m.content }));
+  } else if (message) {
+    userMessages = [{ role: 'user', content: message }];
+  } else {
     return res.status(400).json({ error: 'No message provided' });
+  }
+
+  if (userMessages.length === 0) {
+    return res.status(400).json({ error: 'Empty conversation' });
   }
 
   try {
@@ -25,7 +40,7 @@ module.exports = async function handler(req, res) {
         model: 'llama-3.3-70b-versatile',
         messages: [
           { role: 'system', content: systemPrompt },
-          { role: 'user', content: message }
+          ...userMessages          // full history injected here
         ],
         max_tokens: 200
       })

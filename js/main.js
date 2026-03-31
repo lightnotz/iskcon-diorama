@@ -111,6 +111,9 @@ function useBrowserTTS(text, btn) {
 
 // ─── CHATBOT ──────────────────────────────────────────────────────────────────
 
+// Conversation history — persists for the session, gives the bot memory
+const conversationHistory = [];
+
 function toggleChat() {
   const chatWindow = document.getElementById('chat-window');
   if (!chatWindow) return;
@@ -129,31 +132,45 @@ async function sendMessage() {
   const userText = input.value.trim();
   if (!userText) return;
 
+  // Add user message to UI
   messages.innerHTML += `<div class="message user-message">${userText}</div>`;
   input.value = '';
   messages.scrollTop = messages.scrollHeight;
 
-  messages.innerHTML += `<div class="message bot-message" id="typing">thinking... 🙏</div>`;
+  // Push to history before sending
+  conversationHistory.push({ role: 'user', content: userText });
+
+  // Typing indicator
+  const typingId = 'typing-' + Date.now();
+  messages.innerHTML += `<div class="message bot-message" id="${typingId}">thinking... 🙏</div>`;
   messages.scrollTop = messages.scrollHeight;
 
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userText }),
+      // Send full history so the server can pass it to the LLM
+      body: JSON.stringify({ history: conversationHistory }),
     });
 
     if (!response.ok) throw new Error('Server error: ' + response.status);
 
     const data = await response.json();
-    document.getElementById('typing').remove();
+    document.getElementById(typingId)?.remove();
+
     const reply = data.reply || 'Hare Krishna! Please try again 🙏';
+
+    // Store assistant reply in history so next turn has full context
+    conversationHistory.push({ role: 'assistant', content: reply });
+
     messages.innerHTML += `<div class="message bot-message">${reply}</div>`;
     messages.scrollTop = messages.scrollHeight;
 
   } catch (error) {
-    document.getElementById('typing').remove();
+    document.getElementById(typingId)?.remove();
     messages.innerHTML += `<div class="message bot-message">Sorry, something went wrong 🙏</div>`;
+    // Remove the failed user message from history so it doesn't corrupt future turns
+    conversationHistory.pop();
   }
 }
 
