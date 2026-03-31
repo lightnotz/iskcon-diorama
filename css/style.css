@@ -274,7 +274,7 @@ body {
 /* The actual background image — moves and blurs via JS */
 .pastime-hero-bg {
   position: absolute;
-  inset: -15%;            /* oversized so parallax movement never shows edges */
+  inset: -20% -15% -25% -15%;         /* oversized so parallax movement never shows edges */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -344,7 +344,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 180px;
   background: linear-gradient(transparent, #080808);
   z-index: 3;
   pointer-events: none;
