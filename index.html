@@ -30,52 +30,24 @@
   </section>
 
   <section class="dioramas-section" id="dioramas">
-    <h2 class="section-title">Sacred Pastimes</h2>
-    <p class="section-subtitle">Select a diorama to explore the divine story</p>
+    <p class="section-label">Sacred Pastimes</p>
+    <h2 class="section-title">The Divine Lila</h2>
+    <p class="section-subtitle">Select a diorama to explore the story</p>
 
-    <div class="dioramas-grid">
-
-      <a href="pastime.html" class="diorama-card">
-        <div class="card-number">01</div>
-        <h3>Kaliya Daman</h3>
-        <p>Krishna subdues the serpent Kaliya in the Yamuna river</p>
-        <span class="explore-link">Explore →</span>
-      </a>
-
-      <a href="pastime.html" class="diorama-card">
-        <div class="card-number">02</div>
-        <h3>Govardhan Puja</h3>
-        <p>Krishna lifts Govardhan hill to protect the villagers</p>
-        <span class="explore-link">Explore →</span>
-      </a>
-
-      <a href="pastime.html" class="diorama-card">
-        <div class="card-number">03</div>
-        <h3>Butter Thief</h3>
-        <p>Young Krishna steals butter from the Gopis of Vrindavan</p>
-        <span class="explore-link">Explore →</span>
-      </a>
-
-      <a href="pastime.html" class="diorama-card">
-        <div class="card-number">04</div>
-        <h3>Putana Moksha</h3>
-        <p>Krishna liberates the demoness Putana through his divine touch</p>
-        <span class="explore-link">Explore →</span>
-      </a>
-
-    </div>
+    <!--
+      Cards are rendered here by renderDioramaCards() below.
+      To reorder or add cards, edit js/pastime-registry.js only.
+    -->
+    <div class="dioramas-grid" id="dioramas-grid"></div>
   </section>
 
-  <!-- Chatbot Button -->
   <button class="chat-toggle" onclick="toggleChat()">Ask Krishna</button>
 
-  <!-- Chatbot Window -->
   <div class="chat-window" id="chat-window">
     <div class="chat-header">
       <span>🛕 Krishna's Guide</span>
       <button onclick="toggleChat()" class="chat-close">✕</button>
     </div>
-    <!-- Greeting injected by setInitialGreeting() in main.js — do not hardcode here -->
     <div class="chat-messages" id="chat-messages"></div>
     <div class="chat-input-area">
       <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
@@ -83,7 +55,40 @@
     </div>
   </div>
 
+  <script src="js/pastime-registry.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+    // ── Render diorama cards from registry ──────────────────────────────────
+    // Cards are sorted by `order` in pastime-registry.js.
+    // To reorder: change the `order` field there. Nothing here changes.
+    function renderDioramaCards() {
+      const grid = document.getElementById('dioramas-grid');
+      if (!grid) return;
+
+      PASTIME_REGISTRY_SORTED.forEach((pastime, index) => {
+        const cardNumber = String(index + 1).padStart(2, '0');
+
+        const a = document.createElement('a');
+        a.href      = pastime.file;
+        a.className = 'diorama-card fade-in';
+
+        a.innerHTML = `
+          <div class="card-number">${cardNumber}</div>
+          <h3>${pastime.title}</h3>
+          <p>${pastime.description}</p>
+          <span class="explore-link">Explore →</span>
+        `;
+
+        grid.appendChild(a);
+      });
+
+      // Re-run scroll observer on newly created cards
+      document.querySelectorAll('.diorama-card').forEach(el => observer.observe(el));
+    }
+
+    document.addEventListener('DOMContentLoaded', renderDioramaCards);
+  </script>
 
 </body>
 
