@@ -1,9 +1,12 @@
 // ─── STATE ────────────────────────────────────────────────────────────────────
 
-let isSpeaking       = false;
-let currentAudio     = null;
-let utterance        = null;
-let currentLang      = 'en'; // updated by translate.js when user switches language
+let isSpeaking   = false;
+let currentAudio = null;
+let utterance    = null;
+
+// NOTE: currentLang lives in translate.js — read it via getCurrentLang().
+// Do NOT declare it here; a duplicate declaration would shadow translate.js's
+// copy and language switching would stop working.
 
 // ─── NARRATION ────────────────────────────────────────────────────────────────
 
@@ -18,7 +21,8 @@ function toggleAudio() {
   }
 
   const pastimeId = (typeof PASTIME_ID !== 'undefined') ? PASTIME_ID : null;
-  const lang      = currentLang || 'en';
+  // Use translate.js's getter so we always have the currently selected language
+  const lang = (typeof getCurrentLang === 'function') ? getCurrentLang() : 'en';
 
   // If we have a PASTIME_ID, try to play the pre-recorded MP3 first
   if (pastimeId) {
