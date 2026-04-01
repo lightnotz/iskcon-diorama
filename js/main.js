@@ -1,70 +1,73 @@
-// js/main.js
+// ─── STATE ────────────────────────────────────────────────────────────────────
+
+let isSpeaking       = false;
+let currentAudio     = null;
+let utterance        = null;
+let currentLang      = 'en'; // updated by translate.js when user switches language
 
 // ─── NARRATION ────────────────────────────────────────────────────────────────
 
-let isSpeaking = false;
-let currentAudio = null;
-let utterance    = null;
-
-async function toggleAudio() {
+function toggleAudio() {
   const btn     = document.querySelector('.audio-btn');
   const storyEl = document.getElementById('story-text');
   if (!btn || !storyEl) return;
 
-  if (isSpeaking) { stopNarration(); return; }
+  if (isSpeaking) {
+    stopNarration();
+    return;
+  }
 
-  const storyText = storyEl.innerText.trim();
-  btn.innerHTML = '⏳ Loading narration...';
-  btn.disabled  = true;
+  const pastimeId = (typeof PASTIME_ID !== 'undefined') ? PASTIME_ID : null;
+  const lang      = currentLang || 'en';
 
-  try {
-    const response = await fetch('/api/narrate', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ text: storyText }),
-    });
+  // If we have a PASTIME_ID, try to play the pre-recorded MP3 first
+  if (pastimeId) {
+    const audioPath = `/audio/${pastimeId}-${lang}.mp3`;
 
-    const contentType = response.headers.get('Content-Type') || '';
-    if (contentType.includes('application/json')) {
-      const data = await response.json();
-      if (data.fallback) { useBrowserTTS(storyText, btn); return; }
-    }
+    btn.innerHTML = '⏳ Loading...';
+    btn.disabled  = true;
 
-    const blob = await response.blob();
-    const url  = URL.createObjectURL(blob);
-    currentAudio = new Audio(url);
-    currentAudio.play();
-    isSpeaking       = true;
-    btn.innerHTML    = '⏹ Stop Narration';
-    btn.disabled     = false;
+    currentAudio = new Audio(audioPath);
+
+    currentAudio.play()
+      .then(() => {
+        isSpeaking    = true;
+        btn.innerHTML = '⏹ Stop Narration';
+        btn.disabled  = false;
+      })
+      .catch(() => {
+        // MP3 not found or can't play — fall back to browser TTS
+        currentAudio = null;
+        useBrowserTTS(storyEl.innerText.trim(), btn);
+      });
 
     currentAudio.onended = () => {
       isSpeaking    = false;
+      currentAudio  = null;
       btn.innerHTML = '🔊 Listen to this Story';
-      URL.revokeObjectURL(url);
-    };
-    currentAudio.onerror = () => {
-      isSpeaking    = false;
-      btn.innerHTML = '🔊 Listen to this Story';
-      btn.disabled  = false;
     };
 
-  } catch (err) {
-    console.warn('ElevenLabs failed, using browser TTS:', err);
-    useBrowserTTS(storyText, btn);
+  } else {
+    // No PASTIME_ID (e.g. index page) — use browser TTS directly
+    useBrowserTTS(storyEl.innerText.trim(), btn);
   }
 }
 
 function stopNarration() {
   const btn = document.querySelector('.audio-btn');
+
   if (currentAudio) {
     currentAudio.pause();
     currentAudio.currentTime = 0;
     currentAudio = null;
   }
   window.speechSynthesis.cancel();
+
   isSpeaking = false;
-  if (btn) { btn.innerHTML = '🔊 Listen to this Story'; btn.disabled = false; }
+  if (btn) {
+    btn.innerHTML = '🔊 Listen to this Story';
+    btn.disabled  = false;
+  }
 }
 
 function useBrowserTTS(text, btn) {
@@ -73,10 +76,10 @@ function useBrowserTTS(text, btn) {
     v.lang === 'en-IN' || v.lang === 'en-GB' || v.name.includes('Google')
   ) || voices[0];
 
-  utterance         = new SpeechSynthesisUtterance(text);
-  utterance.rate    = 0.88;
-  utterance.pitch   = 1.0;
-  utterance.volume  = 1;
+  utterance        = new SpeechSynthesisUtterance(text);
+  utterance.rate   = 0.88;
+  utterance.pitch  = 1.0;
+  utterance.volume = 1;
   if (preferred) utterance.voice = preferred;
 
   window.speechSynthesis.speak(utterance);
@@ -91,17 +94,14 @@ function useBrowserTTS(text, btn) {
 
 // ─── XSS-SAFE DOM HELPERS ─────────────────────────────────────────────────────
 
-// Creates a message bubble safely — never uses innerHTML for user content
 function createMessageEl(text, type) {
   const div = document.createElement('div');
   div.className = `message ${type}`;
 
-  // Bot replies may contain intentional <br> and <strong> from our greeting —
-  // allow those only for bot messages; user text is always plain text
   if (type === 'bot-message') {
     div.innerHTML = text; // trusted: comes from our own server
   } else {
-    div.textContent = text; // untrusted: comes from the user
+    div.textContent = text; // untrusted: user input — never use innerHTML here
   }
   return div;
 }
@@ -116,7 +116,7 @@ function appendMessage(container, text, type, id) {
 
 // ─── CHATBOT ──────────────────────────────────────────────────────────────────
 
-const conversationHistory = [];
+const conversationHistory = []; // keeps full back-and-forth for continuity
 
 const PASTIME_NAMES = {
   kaliya:    'Kaliya Daman',
@@ -161,20 +161,17 @@ async function sendMessage() {
   const userText = input.value.trim();
   if (!userText) return;
 
-  // Enforce client-side length limit (mirrors server limit)
+  // Client-side length guard (mirrors any server-side limit)
   if (userText.length > 1000) {
     appendMessage(messages, 'Please keep your message under 1000 characters 🙏', 'bot-message');
     return;
   }
 
-  // Render user message safely via textContent (XSS-safe)
-  appendMessage(messages, userText, 'user-message');
+  appendMessage(messages, userText, 'user-message'); // XSS-safe via textContent
   input.value = '';
 
-  // Push to history
   conversationHistory.push({ role: 'user', content: userText });
 
-  // Typing indicator
   const typingId = 'typing-' + Date.now();
   appendMessage(messages, 'thinking... 🙏', 'bot-message', typingId);
 
@@ -183,14 +180,13 @@ async function sendMessage() {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        history: conversationHistory,
-        context: currentPastimeId,
+        history: conversationHistory,  // full history for continuity
+        context: currentPastimeId,     // tells the bot which pastime page we're on
       }),
     });
 
     document.getElementById(typingId)?.remove();
 
-    // Handle rate limiting gracefully
     if (response.status === 429) {
       const data = await response.json();
       appendMessage(messages, data.error || 'Too many messages. Please wait a moment 🙏', 'bot-message');
@@ -209,7 +205,7 @@ async function sendMessage() {
   } catch (error) {
     document.getElementById(typingId)?.remove();
     appendMessage(messages, 'Sorry, something went wrong. Please try again 🙏', 'bot-message');
-    conversationHistory.pop();
+    conversationHistory.pop(); // remove failed message from history
   }
 }
 
