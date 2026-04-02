@@ -152,51 +152,6 @@ body {
 }
 
 /* ─── DIORAMAS SECTION ────────────────────────────────────────────────────── */
-
-.dioramas-section {
-  padding: 100px 40px;
-  text-align: center;
-  position: relative;
-}
-
-.section-label {
-  font-size: 0.7rem;
-  letter-spacing: 5px;
-  color: rgba(201, 162, 39, 0.7);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.section-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  background: linear-gradient(135deg, #f5d76e, #c9a227);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 12px;
-}
-
-.section-subtitle {
-  color: rgba(168, 144, 112, 0.8);
-  margin-bottom: 60px;
-  font-size: 1rem;
-}
-
-.dioramas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* ── PASTE THIS INTO css/style.css ───────────────────────────────────────────
-   Replace everything from .diorama-card { ... } down through
-   .diorama-card:hover .explore-link { ... }
-   with this entire block.
-   ─────────────────────────────────────────────────────────────────────────── */
-
 .diorama-card {
   position: relative;
   border-radius: 20px;
