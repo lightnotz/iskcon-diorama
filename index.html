@@ -34,10 +34,6 @@
     <h2 class="section-title">The Divine Lila</h2>
     <p class="section-subtitle">Select a diorama to explore the story</p>
 
-    <!--
-      Cards are rendered here by renderDioramaCards() below.
-      To reorder or add cards, edit js/pastime-registry.js only.
-    -->
     <div class="dioramas-grid" id="dioramas-grid"></div>
   </section>
 
@@ -60,8 +56,6 @@
 
   <script>
     // ── Render diorama cards from registry ──────────────────────────────────
-    // Cards are sorted by `order` in pastime-registry.js.
-    // To reorder: change the `order` field there. Nothing here changes.
     function renderDioramaCards() {
       const grid = document.getElementById('dioramas-grid');
       if (!grid) return;
@@ -71,16 +65,14 @@
 
         const a = document.createElement('a');
         a.href      = pastime.file;
-        a.className = 'diorama-card fade-in';
+        a.className = 'diorama-card';
 
-        // Set the pastime image as background via CSS variable
-        // The card CSS uses this to drive the background-image
-        if (pastime.image) {
-          a.style.setProperty('--card-bg', `url('${pastime.image}')`);
-        }
+        // Inline the background-image directly on .card-bg-img via a data attribute
+        // We build the inner HTML with the image URL baked in — no CSS variable needed
+        const imageUrl = pastime.image || '';
 
         a.innerHTML = `
-          <div class="card-bg-img"></div>
+          <div class="card-bg-img" style="background-image: url('${imageUrl}');"></div>
           <div class="card-overlay"></div>
           <div class="card-content">
             <div class="card-number">${cardNumber}</div>
@@ -93,8 +85,41 @@
         grid.appendChild(a);
       });
 
-      // Re-run scroll observer on newly created cards
-      document.querySelectorAll('.diorama-card').forEach(el => observer.observe(el));
+      // Trigger scroll-fly animation after cards are in DOM
+      requestAnimationFrame(() => {
+        setupCardAnimations();
+      });
+    }
+
+    function setupCardAnimations() {
+      const cards = document.querySelectorAll('.diorama-card');
+
+      // Use IntersectionObserver for the fly-in effect
+      const flyObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            // Stagger each card slightly
+            const card = entry.target;
+            const delay = card.dataset.delay || 0;
+            setTimeout(() => {
+              card.classList.add('visible');
+            }, delay);
+            flyObserver.unobserve(card);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      cards.forEach((card, i) => {
+        card.classList.add('card-hidden');
+        card.dataset.delay = i * 80; // 80ms stagger between cards
+        flyObserver.observe(card);
+      });
+
+      // Also observe section headings
+      document.querySelectorAll('.section-title, .section-subtitle').forEach(el => {
+        el.classList.add('fade-in');
+        observer.observe(el);
+      });
     }
 
     document.addEventListener('DOMContentLoaded', renderDioramaCards);

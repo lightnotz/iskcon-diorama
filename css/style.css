@@ -185,17 +185,13 @@ body {
 
 .dioramas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* ── PASTE THIS INTO css/style.css ───────────────────────────────────────────
-   Replace everything from .diorama-card { ... } down through
-   .diorama-card:hover .explore-link { ... }
-   with this entire block.
-   ─────────────────────────────────────────────────────────────────────────── */
+/* ─── DIORAMA CARD ────────────────────────────────────────────────────────── */
 
 .diorama-card {
   position: relative;
@@ -204,27 +200,41 @@ body {
   text-decoration: none;
   color: #f5e6c8;
   text-align: left;
-  min-height: 320px;
+  min-height: 340px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  border: 1px solid rgba(201, 162, 39, 0.15);
-  transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-              border-color 0.3s ease,
-              box-shadow 0.3s ease;
+  border: 1px solid rgba(201, 162, 39, 0.18);
+  transition:
+    transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.6s ease;
+  will-change: transform, opacity;
+}
+
+/* ── Fly-in scroll animation ── */
+.diorama-card.card-hidden {
+  opacity: 0;
+  transform: translateY(60px) scale(0.96);
+}
+
+.diorama-card.card-hidden.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* ── Background image layer ── */
 .card-bg-img {
   position: absolute;
   inset: 0;
-  background-image: var(--card-bg, none);
   background-size: cover;
   background-position: center;
   background-color: rgba(26, 10, 0, 0.95); /* fallback when no image */
   transform: scale(1);
-  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.65s ease;
+  transition:
+    transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.65s ease;
   will-change: transform, filter;
   z-index: 0;
 }
@@ -235,9 +245,9 @@ body {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(8, 4, 0, 0.15)  0%,
-    rgba(8, 4, 0, 0.45) 40%,
-    rgba(8, 4, 0, 0.82) 75%,
+    rgba(8, 4, 0, 0.10)  0%,
+    rgba(8, 4, 0, 0.35) 35%,
+    rgba(8, 4, 0, 0.78) 70%,
     rgba(8, 4, 0, 0.95) 100%
   );
   z-index: 1;
@@ -266,7 +276,7 @@ body {
 .card-number {
   font-family: 'Cinzel', serif;
   font-size: 2.8rem;
-  background: linear-gradient(135deg, rgba(201,162,39,0.35), rgba(201,162,39,0.1));
+  background: linear-gradient(135deg, rgba(201,162,39,0.45), rgba(201,162,39,0.15));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -287,7 +297,7 @@ body {
 
 .diorama-card p {
   font-size: 0.88rem;
-  color: rgba(212, 197, 169, 0.8);
+  color: rgba(212, 197, 169, 0.85);
   line-height: 1.65;
   margin-bottom: 20px;
 }
@@ -302,25 +312,26 @@ body {
 
 /* ── Hover effects ── */
 .diorama-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(201, 162, 39, 0.4);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65),
-              0 0 40px rgba(201, 162, 39, 0.1);
+  transform: translateY(-12px) scale(1.01) !important;
+  border-color: rgba(201, 162, 39, 0.45);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.7),
+    0 0 50px rgba(201, 162, 39, 0.12);
 }
 
 /* Image zooms in subtly on hover */
 .diorama-card:hover .card-bg-img {
-  transform: scale(1.08);
-  filter: brightness(0.75);
+  transform: scale(1.1);
+  filter: brightness(0.7) saturate(1.1);
 }
 
-/* Overlay deepens slightly so text stays readable */
+/* Overlay deepens on hover */
 .diorama-card:hover .card-overlay {
   background: linear-gradient(
     to bottom,
-    rgba(8, 4, 0, 0.25)  0%,
-    rgba(8, 4, 0, 0.55) 40%,
-    rgba(8, 4, 0, 0.88) 75%,
+    rgba(8, 4, 0, 0.18)  0%,
+    rgba(8, 4, 0, 0.50) 35%,
+    rgba(8, 4, 0, 0.88) 70%,
     rgba(8, 4, 0, 0.97) 100%
   );
 }
@@ -328,21 +339,6 @@ body {
 .diorama-card:hover .explore-link {
   letter-spacing: 3px;
   color: #e8c84a;
-}
-
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .diorama-card {
-    min-height: 260px;
-  }
-
-  .card-content {
-    padding: 22px;
-  }
-
-  .card-number {
-    font-size: 2.2rem;
-  }
 }
 
 /* ─── PASTIME PARALLAX HERO ───────────────────────────────────────────────── */
@@ -358,7 +354,6 @@ body {
   overflow: hidden;
 }
 
-/* Fixed pixel oversize — never exposes edges regardless of scroll depth */
 .pastime-hero-bg {
   position: absolute;
   top: -120px;
@@ -424,7 +419,6 @@ body {
   line-height: 1.6;
 }
 
-/* Bottom fade into page */
 .pastime-hero::after {
   content: '';
   position: absolute;
@@ -488,7 +482,7 @@ body {
   margin-bottom: 24px;
 }
 
-/* ─── SCROLL ANIMATIONS ───────────────────────────────────────────────────── */
+/* ─── SCROLL ANIMATIONS (non-card) ───────────────────────────────────────── */
 
 .fade-in {
   opacity: 0;
@@ -511,7 +505,6 @@ body {
   top: auto;
   z-index: 9999;
 
-  /* Glass look */
   background: linear-gradient(
     135deg,
     rgba(201, 162, 39, 0.22) 0%,
@@ -543,14 +536,12 @@ body {
   gap: 7px;
 }
 
-/* Swap 🙏 for 💬 without touching HTML */
 .chat-toggle::before {
   content: '💬';
   font-size: 1rem;
   line-height: 1;
 }
 
-/* Live green dot */
 .chat-toggle::after {
   content: '';
   width: 7px;
@@ -598,7 +589,6 @@ body {
   width: 340px;
   height: 460px;
 
-  /* Glass */
   background: rgba(8, 4, 0, 0.52);
   backdrop-filter: blur(28px) saturate(160%);
   -webkit-backdrop-filter: blur(28px) saturate(160%);
@@ -627,7 +617,6 @@ body {
   to   { opacity: 1; transform: scale(1)    translateY(0); }
 }
 
-/* Header */
 .chat-header {
   padding: 14px 18px 12px;
   display: flex;
@@ -639,7 +628,6 @@ body {
   color: #e8c84a;
   background: rgba(201, 162, 39, 0.07);
   border-bottom: 1px solid rgba(201, 162, 39, 0.14);
-  /* Reset any gradient-text bleed from earlier */
   -webkit-text-fill-color: #e8c84a;
   background-clip: unset;
   -webkit-background-clip: unset;
@@ -668,7 +656,6 @@ body {
   transform: scale(1.1);
 }
 
-/* Messages */
 .chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -709,7 +696,6 @@ body {
   border-radius: 16px 4px 16px 16px;
 }
 
-/* Input row */
 .chat-input-area {
   padding: 12px 14px;
   display: flex;
@@ -846,11 +832,24 @@ body {
   }
 
   .dioramas-section {
-    padding: 60px 20px;
+    padding: 60px 16px;
   }
 
   .dioramas-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .diorama-card {
+    min-height: 280px;
+  }
+
+  .card-content {
+    padding: 22px;
+  }
+
+  .card-number {
+    font-size: 2.2rem;
   }
 
   .pastime-hero {
@@ -871,7 +870,6 @@ body {
     font-size: 0.85rem;
   }
 
-  /* Chat button — stays fixed bottom-right, slightly smaller */
   .chat-toggle {
     bottom: 20px;
     right: 16px;
@@ -879,7 +877,6 @@ body {
     padding: 10px 16px;
   }
 
-  /* Chat window — floats above button, never full-screen */
   .chat-window {
     width: calc(100vw - 24px);
     max-width: 360px;
