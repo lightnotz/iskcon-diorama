@@ -21,7 +21,7 @@ const PASTIME_DATA = {
       storyHeading: 'The Story',
       paragraphs: [
         `On a dark and stormy night in the prison of King Kamsa in Mathura, the Supreme Lord Krishna appeared as the eighth child of Devaki and Vasudeva. The moment He was born, the prison doors swung open on their own, the guards fell into a deep sleep, and Vasudeva felt a divine impulse to carry the newborn Lord to safety in Gokul.`,
-        `Holding baby Krishna above his head in a basket, Vasudeva stepped out into the torrential rain. The Yamuna river was flooded and raging — yet as Vasudeva waded in, the river parted to make way. Ananta Shesha, the divine serpent, spread his thousand hoods above them, shielding the Lord from the downpour like an umbrella.`,
+        `Holding baby Krishna above his head in a basket, Vasudeva stepped out into the torrential rain. The Yamuna river was flooded and raging yet as Vasudeva waded in, the river parted to make way. Ananta Shesha, the divine serpent, spread his thousand hoods above them, shielding the Lord from the downpour like an umbrella.`,
         `Baby Krishna, though just born, dangled His lotus feet into the waters of the Yamuna. The river, thrilled by the touch of the Lord's feet, immediately calmed and allowed Vasudeva to cross safely.`,
         `Vasudeva reached Gokul, placed Krishna beside Yashoda, and returned to the prison with her newborn daughter. When Kamsa came to kill the child, she slipped from his hands and ascended to the sky, revealing herself as the goddess Yogamaya, and warned him that the one who would end his reign had already been born. The Lord was safe.`,
       ],
@@ -92,10 +92,10 @@ const PASTIME_DATA = {
       subtitle:     'Celebration of Lord Krishna\'s divine appearance in Gokula',
       storyHeading: 'The Story',
       paragraphs: [
-        `When news reached Nanda Maharaja in Gokula that a son had been born to him, the entire village erupted in joy. Though Krishna had actually appeared in Mathura and been secretly brought to Gokula by Vasudeva, Nanda Maharaja believed the child to be his own — for such was the Lord's divine arrangement through His yogamaya potency.`,
+        `When news reached Nanda Maharaja in Gokula that a son had been born to him, the entire village erupted in joy. Though Krishna had actually appeared in Mathura and been secretly brought to Gokula by Vasudeva, Nanda Maharaja believed the child to be his own for such was the Lord's divine arrangement through His yogamaya potency.`,
         `Nanda Maharaja, one of the wealthiest and most respected cowherd leaders, immediately arranged a grand celebration. He donated cows, gold, and garments to the brahmanas and invited singers, dancers, and musicians to fill Gokula with festivity. Every home was decorated, and the villagers dressed in their finest clothes.`,
-        `Mother Yashoda and the gopis sang auspicious songs and showered blessings upon the newborn child. The cowherd men joyfully sprinkled each other with yoghurt, milk, and ghee — the very wealth of Gokula — in an outpouring of pure celebration.`,
-        `The demigods from the heavenly planets descended unseen, showering flowers and playing celestial music, for the Supreme Lord Himself had appeared among them. The festival of Nandotsava — the celebration of Nanda's great fortune — is still observed with immense joy by devotees all over the world, for on this day Gokula received its eternal treasure.`,
+        `Mother Yashoda and the gopis sang auspicious songs and showered blessings upon the newborn child. The cowherd men joyfully sprinkled each other with yoghurt, milk, and ghee the very wealth of Gokula in an outpouring of pure celebration.`,
+        `The demigods from the heavenly planets descended unseen, showering flowers and playing celestial music, for the Supreme Lord Himself had appeared among them. The festival of Nandotsava the celebration of Nanda's great fortune — is still observed with immense joy by devotees all over the world, for on this day Gokula received its eternal treasure.`,
       ],
     },
 
@@ -153,12 +153,83 @@ const PASTIME_DATA = {
 
   },
 
-  // ── 03 · Kaliya Daman ────────────────────────────────────────────────────
+  // ── 03 · Trinavarta Vadha ───────────────────────────────────────────────
+
+  trinavarta: {
+
+    en: {
+      number:       '03',
+      title:        'Trinavarta Vadha',
+      subtitle:     'Baby Krishna slays the whirlwind demon Trinavarta',
+      storyHeading: 'The Story',
+      paragraphs: [
+        `When Krishna was still a very young child crawling in Gokula, Kamsa sent the demon Trinavarta, one of his most powerful agents to kill the infant Lord. Trinavarta arrived in Gokula disguised as a fierce whirlwind, creating a blinding dust storm that plunged the entire village into darkness and panic.`,
+        `Mother Yashoda had been holding baby Krishna on her lap when the demon's storm suddenly struck. The wind became so violent and the dust so blinding that she could not see even her own hands. Overwhelmed, she set Krishna down for just a moment and in that instant, Trinavarta swooped in and carried the infant high up into the sky, intending to hurl Him to His death.`,
+        `But as Trinavarta ascended into the clouds with the child, baby Krishna suddenly became inconceivably heavy as heavy as the entire universe for He is the Supreme Lord who carries all of creation within Himself. The demon found himself unable to move, unable to release the child, and unable to fly any further. He was completely immobilised by the weight of the Lord.`,
+        `Krishna then seized Trinavarta by the throat with His tiny hands. The demon gasped, struggled, and fell crashing to the ground, his life extinguished by the divine touch of the infant Lord. The villagers of Gokula rushed to find baby Krishna sitting cheerfully atop the demon's lifeless body, completely unharmed. Mother Yashoda wept with relief and held her child close, not yet knowing that she was embracing the Supreme Personality of Godhead Himself.`,
+      ],
+    },
+
+    hi: {
+      number:       '०३',
+      title:        'तृणावर्त वध',
+      subtitle:     'बाल कृष्ण ने बवंडर रूपी राक्षस तृणावर्त का वध किया',
+      storyHeading: 'कथा',
+      paragraphs: [
+        `जब कृष्ण अभी गोकुल में घुटनों के बल चलने वाले छोटे से शिशु ही थे, कंस ने अपने सबसे शक्तिशाली दूतों में से एक राक्षस तृणावर्त को शिशु प्रभु का वध करने के लिए भेजा। तृणावर्त एक प्रचंड बवंडर का रूप धारण करके गोकुल में आया और अपनी आँधी से समस्त गाँव को अंधेरे और भय में डुबो दिया।`,
+        `जब राक्षस का तूफान आया, उस समय माता यशोदा बाल कृष्ण को अपनी गोद में लिए बैठी थीं। वायु इतनी प्रचंड और धूल इतनी घनी हो गई कि वे अपने हाथ भी नहीं देख पा रही थीं। विवश होकर उन्होंने एक क्षण के लिए कृष्ण को नीचे रख दिया और उसी पल, तृणावर्त ने शिशु को उठाकर आकाश में ऊँचे ले जाना शुरू किया, यह सोचकर कि उन्हें वहाँ से फेंक देगा।`,
+        `किन्तु जैसे ही तृणावर्त शिशु को लेकर बादलों में पहुँचा, बाल कृष्ण अचानक अकल्पनीय रूप से भारी हो गए समस्त सृष्टि के भार के समान क्योंकि वे ही परमेश्वर हैं जो अपने भीतर समस्त ब्रह्माण्ड को धारण करते हैं। राक्षस न आगे उड़ पाया, न शिशु को छोड़ पाया और न ही हिल-डुल पाया। वह प्रभु के भार से पूर्णतः जकड़ गया।`,
+        `तब कृष्ण ने अपने छोटे-छोटे हाथों से तृणावर्त का गला दबा लिया। राक्षस तड़पा, छटपटाया और भूमि पर गिरकर प्राण त्याग दिए — शिशु प्रभु के दिव्य स्पर्श ने उसके प्राण हर लिए। गोकुल के ग्रामवासी दौड़कर आए तो उन्होंने देखा बाल कृष्ण राक्षस की निर्जीव देह पर प्रसन्नता से बैठे हुए हैं, सर्वथा अक्षत। माता यशोदा ने राहत के आँसुओं से भीगकर अपने लाल को हृदय से लगा लिया यह जाने बिना कि वे स्वयं परम भगवान को अपनी बाँहों में समेट रही हैं। जय श्रीकृष्ण! 🙏`,
+      ],
+    },
+
+    te: {
+      number:       '౦౩',
+      title:        'తృణావర్త వధ',
+      subtitle:     'బాల కృష్ణుడు సుడిగాలి రాక్షసుడు తృణావర్తుణ్ణి సంహరించిన దివ్య లీల',
+      storyHeading: 'కథ',
+      paragraphs: [
+        `కృష్ణుడు గోకులంలో చిన్న పసిబిడ్డగా పాకుతున్న సమయంలో, కంసుడు తన అత్యంత శక్తిమంతమైన రాక్షసులలో ఒకడైన తృణావర్తుణ్ణి శిశు ప్రభువును సంహరించడానికి పంపాడు. తృణావర్తుడు ఒక భయంకరమైన సుడిగాలి రూపం ధరించి గోకులంలో ప్రవేశించాడు మరియు తన దుమ్ము తుఫానుతో మొత్తం గ్రామాన్ని చీకటిలో ముంచి గందరగోళం సృష్టించాడు.`,
+        `రాక్షసుని తుఫాను వచ్చినప్పుడు అమ్మ యశోద బాల కృష్ణుణ్ణి తన ఒడిలో పట్టుకుని ఉంది. గాలి అంత ప్రచండంగా మారింది మరియు దుమ్ము అంత గుడ్డిగా కమ్మింది కి ఆమె తన స్వంత చేతులు కూడా చూడలేకపోయింది. తప్పనిసరి పరిస్థితిలో ఆమె ఒక్క క్షణం కృష్ణుణ్ణి కిందపెట్టింది అదే క్షణంలో తృణావర్తుడు శిశువును ఎత్తుకుని ఆకాశంలో ఉన్నతంగా తీసుకెళ్ళాడు, అక్కడ నుండి విసిరేయాలని.`,
+        `కానీ తృణావర్తుడు శిశువును తీసుకుని మేఘాలలోకి వెళ్ళినప్పుడు, బాల కృష్ణుడు అకస్మాత్తుగా అసాధారణంగా భారంగా మారిపోయాడు మొత్తం విశ్వం అంత బరువుగా ఏలనంటే ఆయనే తనలో సమస్త సృష్టిని ధరించే పరమాత్మ. రాక్షసుడు ముందుకు వెళ్ళలేకపోయాడు, శిశువును వదిలేయలేకపోయాడు, ఇంకా ఎగరలేకపోయాడు. ప్రభువు భారానికి అతడు పూర్తిగా స్తంభించిపోయాడు.`,
+        `అప్పుడు కృష్ణుడు తన చిన్న చేతులతో తృణావర్తుని గొంతు పట్టుకున్నాడు. రాక్షసుడు గిలగిల కొట్టుకుని నేలపై పడి ప్రాణాలు విడిచాడు శిశు ప్రభువు దివ్య స్పర్శతో అతని జీవం హరించుకుపోయింది. గోకుల గ్రామస్థులు పరిగెత్తుకొచ్చి చూసారు బాల కృష్ణుడు రాక్షసుని నిర్జీవ శరీరంపై ఆనందంగా కూర్చుని ఉన్నాడు, ఏ మాత్రం హాని లేకుండా. అమ్మ యశోద ఉపశమనపు కన్నీళ్ళతో తన బిడ్డను గుండెకు హత్తుకుంది తాను స్వయంగా పరమేశ్వరుణ్ణి తన చేతుల్లో హత్తుకుంటున్నానని తెలియకుండానే. జయ శ్రీకృష్ణ! 🙏`,
+      ],
+    },
+
+    ta: {
+      number:       '௦௩',
+      title:        'திரிணாவர்த வதம்',
+      subtitle:     'குழந்தை கிருஷ்ணர் சுழல்காற்று அரக்கன் திரிணாவர்தனை வதம் செய்த திவ்ய லீலை',
+      storyHeading: 'கதை',
+      paragraphs: [
+        `கிருஷ்ணர் இன்னும் கோகுலத்தில் தவழ்ந்து கொண்டிருந்த சிறு குழந்தையாக இருந்தபோது, கம்சன் தன் மிகவும் வலிமையான அரக்கர்களில் ஒருவனான திரிணாவர்தனை குழந்தை ஆண்டவரைக் கொல்ல அனுப்பினான். திரிணாவர்தன் ஒரு கொடிய சுழல்காற்றாக உருவெடுத்து கோகுலத்தில் தோன்றி, தன் மண்புயலால் கிராமம் முழுவதையும் இருளிலும் பீதியிலும் ஆழ்த்தினான்.`,
+        `அரக்கனின் புயல் தாக்கியபோது, அன்னை யசோதா குழந்தை கிருஷ்ணரை தன் மடியில் வைத்திருந்தாள். காற்று மிகவும் கொடுமையாகவும் தூசு மிகவும் குருடாக்கும் வகையிலும் மாறியது அவளால் தன் கைகளைக் கூட காண முடியவில்லை. தவிர்க்க முடியாமல் அவள் ஒரு கணம் கிருஷ்ணரை கீழே வைத்தாள் அந்த நொடியில், திரிணாவர்தன் குழந்தையை தூக்கி வானில் மிக உயரே கொண்டு சென்றான், அங்கிருந்து வீசி எறிய நினைத்து.`,
+        `ஆனால் திரிணாவர்தன் குழந்தையை மேகங்களில் கொண்டு சேர்ந்தபோது, குழந்தை கிருஷ்ணர் திடீரென்று நம்பமுடியாத அளவு கனமாகி விட்டார் முழு பிரபஞ்சத்தின் எடையுள்ளதாக ஏனெனில் அவரே தன்னுள் சகல படைப்பையும் தாங்கும் பரம்பொருள். அரக்கனால் முன்னேற முடியவில்லை, குழந்தையை விட முடியவில்லை, மேலும் பறக்கவும் முடியவில்லை. ஆண்டவரின் எடையால் அவன் முற்றிலும் இயங்க முடியாமல் போனான்.`,
+        `கிருஷ்ணர் தன் சிறு கைகளால் திரிணாவர்தனின் தொண்டையை பிடித்துக்கொண்டார். அரக்கன் துடித்து, தவித்து, தரையில் சரிந்து விழுந்து உயிரை விட்டான் குழந்தை ஆண்டவரின் திவ்ய ஸ்பரிசம் அவன் உயிரை கொண்டது. கோகுல கிராம மக்கள் ஓடிவந்து பார்த்தார்கள் குழந்தை கிருஷ்ணர் அரக்கனின் உயிரற்ற உடலின் மேல் மகிழ்ச்சியாக அமர்ந்திருந்தார், எந்த காயமும் இல்லாமல். அன்னை யசோதா நிவாரண கண்ணீரோடு தன் குழந்தையை அணைத்துக்கொண்டாள் தான் பரம்பொருளையே தன் கைகளில் அணைத்துக்கொள்கிறோம் என்று அறியாமல். ஜய ஸ்ரீகிருஷ்ணா! 🙏`,
+      ],
+    },
+
+    bn: {
+      number:       '০৩',
+      title:        'তৃণাবর্ত বধ',
+      subtitle:     'শিশু কৃষ্ণ ঘূর্ণিঝড় অসুর তৃণাবর্তকে বধ করলেন',
+      storyHeading: 'কাহিনী',
+      paragraphs: [
+        `কৃষ্ণ যখন গোকুলে হামাগুড়ি দেওয়া ছোট্ট শিশু, তখন কংস তার সবচেয়ে শক্তিশালী দূতদের একজন অসুর তৃণাবর্তকে শিশু প্রভুকে বধ করতে পাঠাল। তৃণাবর্ত এক প্রচণ্ড ঘূর্ণিঝড়ের রূপ ধরে গোকুলে এল এবং তার ধূলিঝড়ে সারা গ্রামকে অন্ধকার ও আতঙ্কে ডুবিয়ে দিল।`,
+        `অসুরের ঝড় যখন আছড়ে পড়ল, তখন মা যশোদা শিশু কৃষ্ণকে কোলে নিয়ে বসেছিলেন। বাতাস এত প্রচণ্ড আর ধূলো এত অন্ধকারময় হয়ে পড়ল যে তিনি নিজের হাতও দেখতে পাচ্ছিলেন না। বাধ্য হয়ে তিনি একটুর জন্য কৃষ্ণকে নামিয়ে রাখলেন — আর সেই মুহূর্তেই তৃণাবর্ত শিশুকে তুলে আকাশে উঁচুতে নিয়ে গেল, সেখান থেকে ছুঁড়ে ফেলার উদ্দেশ্যে।`,
+        `কিন্তু তৃণাবর্ত শিশুকে নিয়ে মেঘের মধ্যে পৌঁছাতেই শিশু কৃষ্ণ হঠাৎ অকল্পনীয়ভাবে ভারী হয়ে গেলেন — সমগ্র বিশ্বব্রহ্মাণ্ডের সমান ভারী — কারণ তিনিই সেই পরমেশ্বর যিনি নিজের মধ্যে সমগ্র সৃষ্টিকে ধারণ করেন। অসুর আর সামনে যেতে পারল না, শিশুকে ছাড়তে পারল না, উড়তেও পারল না। প্রভুর ভারে সে সম্পূর্ণ অসাড় হয়ে পড়ল।`,
+        `তখন কৃষ্ণ তাঁর ছোট্ট হাত দিয়ে তৃণাবর্তের গলা চেপে ধরলেন। অসুর ছটফট করল, তড়পাল, আর মাটিতে আছড়ে পড়ে প্রাণ ত্যাগ করল শিশু প্রভুর দিব্য স্পর্শে তার জীবন নিভে গেল। গোকুলের গ্রামবাসীরা ছুটে এসে দেখল শিশু কৃষ্ণ অসুরের নিষ্প্রাণ দেহের উপর আনন্দে বসে আছেন, সম্পূর্ণ অক্ষত। মা যশোদা স্বস্তির অশ্রুতে ভেসে সন্তানকে বুকে জড়িয়ে ধরলেন এটা না জেনেই যে তিনি স্বয়ং পরমেশ্বরকে তাঁর বাহুতে আলিঙ্গন করছেন। জয় শ্রীকৃষ্ণ! 🙏`,
+      ],
+    },
+
+  },
+
+  // ── 05 · Kaliya Daman ────────────────────────────────────────────────────
 
   kaliya: {
 
     en: {
-      number: '03',
+      number: '05',
       title: 'Kaliya Daman',
       subtitle: 'Krishna subdues the serpent Kaliya',
       storyHeading: 'The Story',

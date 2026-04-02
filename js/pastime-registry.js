@@ -19,10 +19,10 @@ const PASTIME_REGISTRY = [
   {
     id:          'vasudeva',
     title:       'Vasudeva Carries Krishna',
-    description: 'On the night of Krishna\'s birth, Vasudeva crosses the Yamuna guarded by Ananta Shesha',
+    description: 'On the night of Krishna\'s appearance, Vasudeva crosses the Yamuna guarded by Ananta Shesha',
     image:       'images/vasudeva.jpg',
     file:        'vasudeva.html',
-    chatCtx:     'Vasudeva carries baby Krishna across the Yamuna river on the night of Krishna\'s birth in Mathura prison, protected by Ananta Shesha, to reach Gokul safely',
+    chatCtx:     'Vasudeva carries baby Krishna across the Yamuna river on the night of Krishna\'s appearance in Mathura prison, protected by Ananta Shesha, to reach Gokul safely',
   },
 
   {
@@ -34,6 +34,14 @@ const PASTIME_REGISTRY = [
   chatCtx:     'Nandotsava — the grand celebration of Krishna\'s birth organised by Nanda Maharaja in Gokula, where the entire village rejoiced with gifts, music, and dancing',
 },
 
+{
+  id:          'trinavarta',
+  title:       'Trinavarta Vadha',
+  description: 'Baby Krishna slays the demon Trinavarta who attacked as a ferocious whirlwind',
+  image:       'images/trinavarta.jpg',
+  file:        'trinavarta.html',
+  chatCtx:     'Trinavarta Vadha — baby Krishna killing the demon Trinavarta who came disguised as a whirlwind, becoming inconceivably heavy and seizing the demon by the throat',
+},
 
   {
     id:          'kaliya',
