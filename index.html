@@ -73,11 +73,21 @@
         a.href      = pastime.file;
         a.className = 'diorama-card fade-in';
 
+        // Set the pastime image as background via CSS variable
+        // The card CSS uses this to drive the background-image
+        if (pastime.image) {
+          a.style.setProperty('--card-bg', `url('${pastime.image}')`);
+        }
+
         a.innerHTML = `
-          <div class="card-number">${cardNumber}</div>
-          <h3>${pastime.title}</h3>
-          <p>${pastime.description}</p>
-          <span class="explore-link">Explore →</span>
+          <div class="card-bg-img"></div>
+          <div class="card-overlay"></div>
+          <div class="card-content">
+            <div class="card-number">${cardNumber}</div>
+            <h3>${pastime.title}</h3>
+            <p>${pastime.description}</p>
+            <span class="explore-link">Explore →</span>
+          </div>
         `;
 
         grid.appendChild(a);
