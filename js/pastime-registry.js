@@ -26,6 +26,16 @@ const PASTIME_REGISTRY = [
   },
 
   {
+  id:          'nandotsava',
+  title:       'Nandotsava',
+  description: 'The joyful celebration of Lord Krishna\'s divine appearance in Nanda\'s Gokula',
+  image:       'images/nandotsava.jpg',
+  file:        'nandotsava.html',
+  chatCtx:     'Nandotsava — the grand celebration of Krishna\'s birth organised by Nanda Maharaja in Gokula, where the entire village rejoiced with gifts, music, and dancing',
+},
+
+
+  {
     id:          'kaliya',
     title:       'Kaliya Daman',
     description: 'Krishna subdues the serpent Kaliya in the Yamuna river',
