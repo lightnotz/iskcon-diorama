@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="ISKCON ABIDS" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <title>The Butter Thief - ISKCON Dioramas</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.jpg" class="logo-img">
+        <span>ISKCON <br> ABIDS</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">← Back to Home</a></li>
+      </ul>
+    </nav>
+
+    <!-- Language Bar -->
+    <div class="lang-bar">
+      <span class="lang-label">🌐 Language:</span>
+      <div class="lang-pills">
+        <button class="lang-pill active" data-lang="en" onclick="setLanguage('en', this)">English</button>
+        <button class="lang-pill" data-lang="hi" onclick="setLanguage('hi', this)">हिन्दी</button>
+        <button class="lang-pill" data-lang="te" onclick="setLanguage('te', this)">తెలుగు</button>
+        <button class="lang-pill" data-lang="ta" onclick="setLanguage('ta', this)">தமிழ்</button>
+        <button class="lang-pill" data-lang="bn" onclick="setLanguage('bn', this)">বাংলা</button>
+      </div>
+      <span class="lang-status" id="lang-status"></span>
+    </div>
+
+    <!-- Parallax Hero -->
+    <div class="pastime-hero" id="pastime-hero">
+      <div class="pastime-hero-bg" id="hero-bg" style="background-image: url('images/butterthief.jpg');"></div>
+      <div class="pastime-hero-overlay"></div>
+      <div class="pastime-hero-content">
+        <div class="pastime-number" data-translate="number">07</div>
+        <h1 class="pastime-title" data-translate="title">The Butter Thief</h1>
+        <p class="pastime-subtitle" data-translate="subtitle">Mother Yashoda catches the naughty Krishna and Balarama stealing butter</p>
+        <button class="audio-btn" onclick="toggleAudio()">🔊 Listen to this Story</button>
+      </div>
+    </div>
+
+    <!-- Story -->
+    <div class="pastime-content">
+      <div class="pastime-story" id="story-text">
+        <h2 data-translate="story-heading">The Story</h2>
+        <p data-translate="p1">One morning in Gokula, Mother Yashoda sat in the kitchen, lovingly churning yoghurt into butter while composing sweet songs about her little Krishna. Her heart was full of maternal joy. But just as she was nursing Krishna in her lap, the pot of milk on the stove began to boil over. She gently set Krishna down and rushed to save it not knowing that this small moment of inattention was about to become one of the sweetest pastimes in all of Vrindavan.</p>
+        <p data-translate="p2">Krishna felt the slight. "So the milk matters more than Me?" He thought, His tiny lips trembling with mischief. He grabbed the churning rod, broke the pot of freshly churned butter, and ran to the storeroom where He climbed onto an overturned wooden mortar and began happily distributing butter to the monkeys, sharing the Lord's wealth with all. When He heard Mother Yashoda's footsteps, He leapt down and ran. She followed His little butter-smeared footprints right to where He was hiding.</p>
+        <p data-translate="p3">But the butter stealing was not only at home. Krishna and Balarama, together with their beloved cowherd friends, would venture into the houses of the gopis in the neighbourhood entering through windows, breaking the hanging pots with stones, and gleefully distributing the contents. The gopis came to Yashoda's door day after day with their complaints, but their eyes were shining with love, not anger. For these were not truly complaints — they were opportunities to speak about Krishna, to keep His name on their lips a little longer.</p>
+        <p data-translate="p4">When caught, Krishna feigned complete innocence pointing to His own reflection in a jewelled pillar and telling Yashoda, "It was this boy, Mother, not Me. He came to steal. I told Him not to, but He would not listen." The gopis laughed and said that when anyone called out "Thief, stop!" Krishna would shout back, "You are the thief this house and everything in it belongs to Me!" And indeed, He was right. The Supreme Lord was simply reclaiming what was already His. He was not stealing butter. He was stealing hearts and turning the simple women of Vrindavan into the greatest devotees in all of creation. Hare Krishna 🙏</p>
+      </div>
+    </div>
+
+    <!-- Chatbot -->
+    <button class="chat-toggle" onclick="toggleChat()">Ask Krishna</button>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-header">
+        <span>🛕 Krishna's Guide</span>
+        <button onclick="toggleChat()" class="chat-close">✕</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
+        <button onclick="sendMessage()" class="send-btn">→</button>
+      </div>
+    </div>
+
+    <!--
+      IMPORTANT: PASTIME_ID must be declared BEFORE main.js loads.
+      This connects this page to translations, audio, and the chatbot.
+      Change only this value per page — nothing else.
+    -->
+    <script>
+      const PASTIME_ID = 'butterthief';
+    </script>
+
+    <script src="js/main.js"></script>
+
+    <script>
+      // Parallax — runs after main.js
+      const heroBg = document.getElementById('hero-bg');
+      const heroEl = document.getElementById('pastime-hero');
+
+      function onScroll() {
+        const scrollY  = window.scrollY;
+        const heroH    = heroEl.offsetHeight;
+        const parallax = scrollY * 0.4;
+        const blur     = Math.min((scrollY / heroH) * 12, 12);
+        const scale    = 1 + scrollY * 0.00015;
+        heroBg.style.transform = `translateY(${parallax}px) scale(${scale})`;
+        heroBg.style.filter    = `blur(${blur}px)`;
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    </script>
+
+    <script src="js/pastime-data.js"></script>
+    <script src="js/translate.js"></script>
+
+  </body>
+</html>

@@ -74,6 +74,19 @@ const PASTIME_REGISTRY = [
   chatCtx:     'Brahmananda Darshana — Mother Yashoda looks into Krishna\'s mouth after complaints He ate mud, only to behold the entire universe all planets, creation, past and future within Him, before Krishna withdraws His yogamaya and she forgets everything',
 },
 
+// ─────────────────────────────────────────────────────────────────────────────
+
+  {
+    id:          'butterthief',
+    title:       'The Butter Thief',
+    description: 'Krishna and Balarama steal butter across Gokula while the gopis lovingly complain to Mother Yashoda',
+    image:       'images/butterthief.jpg',
+    file:        'butterthief.html',
+    chatCtx:     'The Butter Thief lila — Krishna and Balarama stealing butter in Gokula and the neighbors\' homes, the gopis bringing loving complaints to Mother Yashoda, Krishna blaming his own reflection, and the deeper meaning that He was not stealing butter but stealing hearts and turning the gopis into the greatest devotees',
+  },
+
+
+
   {
     id:          'kaliya',
     title:       'Kaliya Daman',
