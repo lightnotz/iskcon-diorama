@@ -43,6 +43,15 @@ const PASTIME_REGISTRY = [
   chatCtx:     'Trinavarta Vadha — baby Krishna killing the demon Trinavarta who came disguised as a whirlwind, becoming inconceivably heavy and seizing the demon by the throat',
 },
 
+{
+  id:          'fruitseller',
+  title:       'The Fruit Seller\'s Fortune',
+  description: 'A fruit seller offers fruits with pure love and the Lord fills her basket with jewels',
+  image:       'images/fruitseller.jpg',
+  file:        'fruitseller.html',
+  chatCtx:     'The Fruit Seller\'s Fortune — young Krishna exchanges grains for fruits with an old fruit seller woman, and the Lord transforms her remaining fruits into precious jewels as a reward for her pure unconditional love',
+},
+
   {
     id:          'kaliya',
     title:       'Kaliya Daman',

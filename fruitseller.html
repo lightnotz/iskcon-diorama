@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Fruit Seller's Fortune - ISKCON Dioramas</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.jpg" class="logo-img">
+        <span>ISKCON <br> ABIDS</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">← Back to Home</a></li>
+      </ul>
+    </nav>
+
+    <!-- Language Bar -->
+    <div class="lang-bar">
+      <span class="lang-label">🌐 Language:</span>
+      <div class="lang-pills">
+        <button class="lang-pill active" data-lang="en" onclick="setLanguage('en', this)">English</button>
+        <button class="lang-pill" data-lang="hi" onclick="setLanguage('hi', this)">हिन्दी</button>
+        <button class="lang-pill" data-lang="te" onclick="setLanguage('te', this)">తెలుగు</button>
+        <button class="lang-pill" data-lang="ta" onclick="setLanguage('ta', this)">தமிழ்</button>
+        <button class="lang-pill" data-lang="bn" onclick="setLanguage('bn', this)">বাংলা</button>
+      </div>
+      <span class="lang-status" id="lang-status"></span>
+    </div>
+
+    <!-- Parallax Hero -->
+    <div class="pastime-hero" id="pastime-hero">
+      <div class="pastime-hero-bg" id="hero-bg" style="background-image: url('images/fruitseller.jpg');"></div>
+      <div class="pastime-hero-overlay"></div>
+      <div class="pastime-hero-content">
+        <div class="pastime-number" data-translate="number">04</div>
+        <h1 class="pastime-title" data-translate="title">The Fruit Seller's Fortune</h1>
+        <p class="pastime-subtitle" data-translate="subtitle">A humble offering of love transforms into jewels by the Lord's grace</p>
+        <button class="audio-btn" onclick="toggleAudio()">🔊 Listen to this Story</button>
+      </div>
+    </div>
+
+    <!-- Story -->
+    <div class="pastime-content">
+      <div class="pastime-story" id="story-text">
+        <h2 data-translate="story-heading">The Story</h2>
+        <p data-translate="p1">One morning in Vrindavan, an old fruit seller woman walked through the lanes calling out her wares. Hearing her voice, little Krishna came running from inside the house, eager to get fruits. In His excitement and haste, He grabbed some grains from a container to offer in exchange — but His tiny hands could barely hold them, and most of the grains slipped through His fingers and fell to the ground before He could reach her.</p>
+        <p data-translate="p2">The fruit seller looked at the few remaining grains in the child's small palm — barely anything at all. But she was moved by the innocence and sweetness of the little boy before her. Without a second thought, she filled His hands with as many fruits as He could carry, asking for nothing in return. Her heart was simply full of love.</p>
+        <p data-translate="p3">That pure and selfless offering — made without expectation, without calculation, with only love — did not go unnoticed by the Lord. As the fruit seller turned to leave, she glanced down at her basket and stopped in wonder. Every single fruit remaining in her basket had transformed into brilliant jewels and precious gems, shining and glittering in the morning light.</p>
+        <p data-translate="p4">This is the eternal teaching of the fruit seller's lila — that the Lord is not purchased by wealth, learning, or grand offerings. He is won only by love offered without condition. The fruit seller gave a handful of fruit to a child and received in return the greatest treasure in all the worlds — the grace of the Supreme Lord Himself.</p>
+      </div>
+    </div>
+
+    <!-- Chatbot -->
+    <button class="chat-toggle" onclick="toggleChat()">Ask Krishna</button>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-header">
+        <span>🛕 Krishna's Guide</span>
+        <button onclick="toggleChat()" class="chat-close">✕</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
+        <button onclick="sendMessage()" class="send-btn">→</button>
+      </div>
+    </div>
+
+    <!--
+      IMPORTANT: PASTIME_ID must be declared BEFORE main.js loads.
+      This connects this page to translations, audio, and the chatbot.
+      Change only this value per page — nothing else.
+    -->
+    <script>
+      const PASTIME_ID = 'fruitseller';
+    </script>
+
+    <script src="js/main.js"></script>
+
+    <script>
+      // Parallax — runs after main.js
+      const heroBg = document.getElementById('hero-bg');
+      const heroEl = document.getElementById('pastime-hero');
+
+      function onScroll() {
+        const scrollY  = window.scrollY;
+        const heroH    = heroEl.offsetHeight;
+        const parallax = scrollY * 0.4;
+        const blur     = Math.min((scrollY / heroH) * 12, 12);
+        const scale    = 1 + scrollY * 0.00015;
+        heroBg.style.transform = `translateY(${parallax}px) scale(${scale})`;
+        heroBg.style.filter    = `blur(${blur}px)`;
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    </script>
+
+    <script src="js/pastime-data.js"></script>
+    <script src="js/translate.js"></script>
+
+  </body>
+</html>
