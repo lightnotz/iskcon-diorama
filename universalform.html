@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brahmananda Darshana - ISKCON Dioramas</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.jpg" class="logo-img">
+        <span>ISKCON <br> ABIDS</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">← Back to Home</a></li>
+      </ul>
+    </nav>
+
+    <!-- Language Bar -->
+    <div class="lang-bar">
+      <span class="lang-label">🌐 Language:</span>
+      <div class="lang-pills">
+        <button class="lang-pill active" data-lang="en" onclick="setLanguage('en', this)">English</button>
+        <button class="lang-pill" data-lang="hi" onclick="setLanguage('hi', this)">हिन्दी</button>
+        <button class="lang-pill" data-lang="te" onclick="setLanguage('te', this)">తెలుగు</button>
+        <button class="lang-pill" data-lang="ta" onclick="setLanguage('ta', this)">தமிழ்</button>
+        <button class="lang-pill" data-lang="bn" onclick="setLanguage('bn', this)">বাংলা</button>
+      </div>
+      <span class="lang-status" id="lang-status"></span>
+    </div>
+
+    <!-- Parallax Hero -->
+    <div class="pastime-hero" id="pastime-hero">
+      <div class="pastime-hero-bg" id="hero-bg" style="background-image: url('images/universalform.jpg');"></div>
+      <div class="pastime-hero-overlay"></div>
+      <div class="pastime-hero-content">
+        <div class="pastime-number" data-translate="number">06</div>
+        <h1 class="pastime-title" data-translate="title">Brahmananda Darshana</h1>
+        <p class="pastime-subtitle" data-translate="subtitle">Mother Yashoda beholds the entire universe within Krishna's mouth</p>
+        <button class="audio-btn" onclick="toggleAudio()">🔊 Listen to this Story</button>
+      </div>
+    </div>
+
+    <!-- Story -->
+    <div class="pastime-content">
+      <div class="pastime-story" id="story-text">
+        <h2 data-translate="story-heading">The Story</h2>
+        <p data-translate="p1">One day the young cowherd boys came running to Mother Yashoda with a complaint Krishna had been eating mud. When she asked Krishna directly, He looked up at her with wide innocent eyes and denied it completely. "Mother, I have not eaten mud. All my friends are lying. If you don't believe me, you can look inside my mouth yourself."</p>
+        <p data-translate="p2">Mother Yashoda, half-amused and half-concerned, asked Krishna to open His mouth. And Krishna the Supreme Lord, who is the cause of all causes opened His mouth, revealing what no mother could ever be prepared to see. Inside that small mouth of a child was the entire universe.</p>
+        <p data-translate="p3">There was the sky, the stars, the planets, the sun and the moon. There were mountains, oceans, forests, and rivers. There was Vrindavan itself with the Yamuna river flowing through it, the cows grazing, the gopas playing, and Yashoda herself standing there looking into Krishna's mouth. The past, the present, and the future. All of creation, complete and infinite, contained within the mouth of her little son.</p>
+        <p data-translate="p4">For a moment, Yashoda was overwhelmed she began to understand that this was no ordinary child. But then Krishna, out of His infinite compassion and maternal love for her, withdrew His yogamaya potency. In an instant, she forgot everything she had seen. She simply closed her son's mouth, held Him close, and her heart overflowed with love, the pure, simple love of a mother for her child. The Lord had allowed her to see the truth, and then lovingly restored her motherly blindness, for that is the sweetness of His lila.</p>
+      </div>
+    </div>
+
+    <!-- Chatbot -->
+    <button class="chat-toggle" onclick="toggleChat()">Ask Krishna</button>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-header">
+        <span>🛕 Krishna's Guide</span>
+        <button onclick="toggleChat()" class="chat-close">✕</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
+        <button onclick="sendMessage()" class="send-btn">→</button>
+      </div>
+    </div>
+
+    <script>
+      const PASTIME_ID = 'universalform';
+    </script>
+
+    <script src="js/main.js"></script>
+
+    <script>
+      const heroBg = document.getElementById('hero-bg');
+      const heroEl = document.getElementById('pastime-hero');
+
+      function onScroll() {
+        const scrollY  = window.scrollY;
+        const heroH    = heroEl.offsetHeight;
+        const parallax = scrollY * 0.4;
+        const blur     = Math.min((scrollY / heroH) * 12, 12);
+        const scale    = 1 + scrollY * 0.00015;
+        heroBg.style.transform = `translateY(${parallax}px) scale(${scale})`;
+        heroBg.style.filter    = `blur(${blur}px)`;
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    </script>
+
+    <script src="js/pastime-data.js"></script>
+    <script src="js/translate.js"></script>
+
+  </body>
+</html>

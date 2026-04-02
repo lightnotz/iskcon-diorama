@@ -65,6 +65,15 @@ const PASTIME_REGISTRY = [
   chatCtx:     'The Fruit Seller\'s Fortune — young Krishna exchanges grains for fruits with an old fruit seller woman, and the Lord transforms her remaining fruits into precious jewels as a reward for her pure unconditional love',
 },
 
+{
+  id:          'universalform',
+  title:       'Brahmananda Darshana',
+  description: 'Mother Yashoda opens Krishna\'s mouth to find mud — and beholds the entire universe within',
+  image:       'images/universalform.jpg',
+  file:        'universalform.html',
+  chatCtx:     'Brahmananda Darshana — Mother Yashoda looks into Krishna\'s mouth after complaints He ate mud, only to behold the entire universe all planets, creation, past and future within Him, before Krishna withdraws His yogamaya and she forgets everything',
+},
+
   {
     id:          'kaliya',
     title:       'Kaliya Daman',
