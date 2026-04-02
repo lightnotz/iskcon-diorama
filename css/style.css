@@ -82,7 +82,7 @@ body {
   background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
     url('../images/bgr.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center -25%;
   background-attachment: fixed;
   padding: 40px;
   position: relative;
