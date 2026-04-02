@@ -16,6 +16,19 @@
 
 const PASTIME_REGISTRY = [
 
+    // ── PASTE THIS as the FIRST entry inside PASTIME_REGISTRY = [ ... ]
+// i.e. before the vasudeva entry. Vasudeva becomes card 02 automatically.
+
+  {
+    id:          'avirbhav',
+    title:       'Krishna Avirbhav',
+    description: 'The Supreme Lord appears in the Mathura prison at the auspicious midnight hour of Ashtami',
+    image:       'images/avirbhav.jpg',
+    file:        'avirbhav.html',
+    chatCtx:     'Krishna Avirbhav — the divine appearance of Lord Krishna as the eighth child of Devaki and Vasudeva in the prison of King Kamsa in Mathura, on the auspicious Ashtami midnight. He first revealed His four-armed Vishnu form to His parents, then transformed into a newborn infant.',
+  },
+
+
   {
     id:          'vasudeva',
     title:       'Vasudeva Carries Krishna',

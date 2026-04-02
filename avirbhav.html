@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Krishna Avirbhav - ISKCON Dioramas</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.jpg" class="logo-img">
+        <span>ISKCON <br> ABIDS</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">← Back to Home</a></li>
+      </ul>
+    </nav>
+
+    <!-- Language Bar -->
+    <div class="lang-bar">
+      <span class="lang-label">🌐 Language:</span>
+      <div class="lang-pills">
+        <button class="lang-pill active" data-lang="en" onclick="setLanguage('en', this)">English</button>
+        <button class="lang-pill" data-lang="hi" onclick="setLanguage('hi', this)">हिन्दी</button>
+        <button class="lang-pill" data-lang="te" onclick="setLanguage('te', this)">తెలుగు</button>
+        <button class="lang-pill" data-lang="ta" onclick="setLanguage('ta', this)">தமிழ்</button>
+        <button class="lang-pill" data-lang="bn" onclick="setLanguage('bn', this)">বাংলা</button>
+      </div>
+      <span class="lang-status" id="lang-status"></span>
+    </div>
+
+    <!-- Parallax Hero -->
+    <div class="pastime-hero" id="pastime-hero">
+      <div class="pastime-hero-bg" id="hero-bg" style="background-image: url('images/avirbhav.jpg');"></div>
+      <div class="pastime-hero-overlay"></div>
+      <div class="pastime-hero-content">
+        <div class="pastime-number" data-translate="number">01</div>
+        <h1 class="pastime-title" data-translate="title">Krishna Avirbhav</h1>
+        <p class="pastime-subtitle" data-translate="subtitle">The Supreme Lord appears in the prison of Kamsa at the midnight hour</p>
+        <button class="audio-btn" onclick="toggleAudio()">🔊 Listen to this Story</button>
+      </div>
+    </div>
+
+    <!-- Story -->
+    <div class="pastime-content">
+      <div class="pastime-story" id="story-text">
+        <h2 data-translate="story-heading">The Story</h2>
+        <p data-translate="p1">Long before His appearance, the earth was groaning under the weight of demoniac kings and their armies. The demigods approached Lord Brahma, who led them to the shore of the milk ocean to pray to Lord Vishnu. The Supreme Lord assured them that He Himself would descend to relieve the earth's burden — and He chose the womb of Devaki in the prison of Mathura as the sacred gateway of His arrival.</p>
+        <p data-translate="p2">Devaki and her husband Vasudeva had been imprisoned by the cruel King Kamsa, her own brother, after a divine voice from the sky announced that her eighth child would bring about his end. Kamsa, seized by fear and rage, killed her children one by one as they were born. Six had already been taken. The seventh, Balarama, was transferred by divine arrangement to the womb of Rohini. Now the eighth was about to come.</p>
+        <p data-translate="p3">It was the auspicious eighth night of the dark fortnight in the month of Bhadra. At midnight, when the stars were perfectly aligned, a divine effulgence filled the prison cell. Devaki and Vasudeva witnessed the most astonishing vision — the Supreme Lord appeared before them in His four-armed form of Vishnu, holding the conch, disc, mace, and lotus, dressed in yellow silk, adorned with jewels, His dark form radiant with the light of a thousand suns.</p>
+        <p data-translate="p4">Vasudeva and Devaki folded their hands and offered prayers with trembling hearts, overwhelmed that the Lord of all creation had chosen them as His parents. Then, by His own sweet will, Krishna transformed into a tender newborn infant — and wept as any newborn child would. In that sacred moment, the Supreme Absolute Truth took the form of a small, helpless baby, lying in a prison cell, so that His devotees could love Him completely. The Avirbhav of Lord Krishna had taken place — and the universe rejoiced.</p>
+      </div>
+    </div>
+
+    <!-- Chatbot -->
+    <button class="chat-toggle" onclick="toggleChat()">Ask Krishna</button>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-header">
+        <span>🛕 Krishna's Guide</span>
+        <button onclick="toggleChat()" class="chat-close">✕</button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about Krishna..." onkeypress="handleKey(event)" />
+        <button onclick="sendMessage()" class="send-btn">→</button>
+      </div>
+    </div>
+
+    <script>
+      const PASTIME_ID = 'avirbhav';
+    </script>
+
+    <script src="js/main.js"></script>
+
+    <script>
+      const heroBg = document.getElementById('hero-bg');
+      const heroEl = document.getElementById('pastime-hero');
+
+      function onScroll() {
+        const scrollY  = window.scrollY;
+        const heroH    = heroEl.offsetHeight;
+        const parallax = scrollY * 0.4;
+        const blur     = Math.min((scrollY / heroH) * 12, 12);
+        const scale    = 1 + scrollY * 0.00015;
+        heroBg.style.transform = `translateY(${parallax}px) scale(${scale})`;
+        heroBg.style.filter    = `blur(${blur}px)`;
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+    </script>
+
+    <script src="js/pastime-data.js"></script>
+    <script src="js/translate.js"></script>
+
+  </body>
+</html>
