@@ -67,11 +67,11 @@ const PASTIME_REGISTRY = [
 
 {
   id:          'universalform',
-  title:       'Brahmanda Darshana',
+  title:       'Brahmanda Darshan',
   description: 'Mother Yashoda opens Krishna\'s mouth to find mud — and beholds the entire universe within',
   image:       'images/universalform.jpg',
   file:        'universalform.html',
-  chatCtx:     'Brahmanda Darshana — Mother Yashoda looks into Krishna\'s mouth after complaints He ate mud, only to behold the entire universe all planets, creation, past and future within Him, before Krishna withdraws His yogamaya and she forgets everything',
+  chatCtx:     'Brahmanda Darshan — Mother Yashoda looks into Krishna\'s mouth after complaints He ate mud, only to behold the entire universe all planets, creation, past and future within Him, before Krishna withdraws His yogamaya and she forgets everything',
 },
 
 // ─────────────────────────────────────────────────────────────────────────────
