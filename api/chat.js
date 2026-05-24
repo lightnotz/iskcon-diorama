@@ -29,7 +29,7 @@ function isRateLimited(ip) {
 
 // ─── ALLOWED ORIGINS ──────────────────────────────────────────────────────────
 const ALLOWED_ORIGINS = [
-  'https://iskcon-diorama.vercel.app',
+  'https://iskconabids.vercel.app',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
   'http://localhost:5500',

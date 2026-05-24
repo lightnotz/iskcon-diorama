@@ -368,13 +368,13 @@ const PASTIME_DATA = {
 
   },
 
-  // ── 06 · Brahmananda Darshana ─────────────────────────────────────────
+  // ── 06 · Brahmanda Darshana ─────────────────────────────────────────
 
   universalform: {
 
     en: {
       number:       '06',
-      title:        'Brahmananda Darshana',
+      title:        'Brahmanda Darshana',
       subtitle:     'Mother Yashoda beholds the entire universe within Krishna\'s mouth',
       storyHeading: 'The Story',
       paragraphs: [
